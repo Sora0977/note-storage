@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Real Time banking/Business Analysis Docs/Tech Spec/06_load_testing_plan.md",
+                "file": "Real Time banking/Planning_60_days.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "06_load_testing_plan"
+              "title": "Planning_60_days"
             }
           }
         ],
@@ -93,7 +93,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "01d2952e0fd07782",
@@ -171,13 +172,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Real Time banking/Business Analysis Docs/Tech Spec/06_load_testing_plan.md",
+                "file": "Real Time banking/Planning_60_days.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 06_load_testing_plan"
+              "title": "Outline of Planning_60_days"
             }
           },
           {
@@ -211,17 +212,21 @@
   },
   "active": "517353569ee15c47",
   "lastOpenFiles": [
-    "Real Time banking/Business Analysis Docs/PRD/01_nghiep_vu_tong_quan.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec/06_load_testing_plan.md",
+    "Real Time banking/Planning.md",
+    "Real Time banking/Planning_60_days.md",
+    "Real Time banking/Resource.md",
+    "Real Time banking/Design system/Real_time_banking_payment_risk_platform_document.md",
+    "Real Time banking/Design system/Pattern.md",
     "Real Time banking/Business Analysis Docs/Tech Spec/05_ci_cd_pipeline.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/06_load_testing_plan.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/02_data_flow.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/03_data_model_va_event_design.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/01_sequence_diagrams.md",
     "Real Time banking/Business Analysis Docs/PRD/README.md",
+    "Real Time banking/Business Analysis Docs/PRD/01_nghiep_vu_tong_quan.md",
     "Real Time banking/Business Analysis Docs/PRD/02_use_cases.md",
     "Real Time banking/Business Analysis Docs/README.md",
     "Real Time banking/Business Analysis Docs/Tech Spec/04_infrastructure_and_deployment.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec/03_data_model_va_event_design.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec/02_data_flow.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec/01_sequence_diagrams.md",
-    "Real Time banking/Design system/Real_time_banking_payment_risk_platform_document.md",
     "Real Time banking/Business Analysis Docs/Tech Spec/README.md",
     "Real Time banking/Business Analysis Docs/Tech Spec",
     "Real Time banking/Business Analysis Docs/PRD",
@@ -229,13 +234,10 @@
     "Real Time banking/Business Analysis Docs/04_data_flow.md",
     "Real Time banking/Business Analysis Docs/03_sequence_diagrams.md",
     "Real Time banking/Business Analysis Docs/02_use_cases.md",
-    "Real Time banking/Resource.md",
     "Real Time banking/Business Analysis Docs/01_nghiep_vu_tong_quan.md",
     "Real Time banking/Business Analysis Docs",
-    "Real Time banking/Design system/Pattern.md",
     "Daily.md",
     "Real Time banking/Design system",
-    "Real Time banking/Planning.md",
     "Real Time banking",
     "Para.md",
     "Welcome.md"
