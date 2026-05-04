@@ -47,15 +47,15 @@ flowchart LR
 
 ## 2. UC01 - Register/Login
 
-| Field | Nội dung |
-|---|---|
-| Actor | Customer |
-| Trigger | User mở web banking/dashboard |
-| Precondition | User chưa login |
-| Main flow | User đăng ký hoặc đăng nhập, Auth Service kiểm tra credential, tạo JWT, Gateway dùng JWT cho request sau |
-| Alternative flow | Sai password, tài khoản bị khóa, token hết hạn |
-| Output | Access token, refresh token optional, user profile |
-| Service chính | auth-service, api-gateway |
+| Field            | Nội dung                                                                                                 |
+| ---------------- | -------------------------------------------------------------------------------------------------------- |
+| Actor            | Customer                                                                                                 |
+| Trigger          | User mở web banking/dashboard                                                                            |
+| Precondition     | User chưa login                                                                                          |
+| Main flow        | User đăng ký hoặc đăng nhập, Auth Service kiểm tra credential, tạo JWT, Gateway dùng JWT cho request sau |
+| Alternative flow | Sai password, tài khoản bị khóa, token hết hạn                                                           |
+| Output           | Access token, refresh token optional, user profile                                                       |
+| Service chính    | auth-service, api-gateway                                                                                |
 
 ## 3. UC02 - Verify user/KYC giả lập
 
@@ -138,8 +138,14 @@ flowchart LR
 | Precondition | Risk case được tạo |
 | Main flow | Analyst xem transaction detail, rule hit, user history, device/IP, chọn approve hoặc reject, nhập note |
 | Alternative flow | Analyst không đủ quyền, case đã đóng |
-| Output | Case closed, transaction `APPROVED` hoặc `REJECTED`, audit log |
+| Output | Case closed, transaction `APPROVED` hoặc `REJECTED`, audit log có `reviewed_by`, `review_note`, decision và timestamp |
 | Service chính | case-service hoặc fraud-service, transaction-service, audit |
+
+Audit requirement:
+
+- Mỗi analyst decision phải lưu người review, thời điểm review, quyết định, reason code và review note.
+- Không cho sửa/xóa review note sau khi case đóng; nếu cần cập nhật, tạo audit entry mới.
+- Transaction detail phải truy vết được ai đã approve/reject khi giao dịch bị hold.
 
 ## 10. UC09 - Wallet reserve/debit/credit
 
@@ -213,4 +219,3 @@ flowchart LR
 | 6 | UC12 Realtime notification | Demo realtime dashboard |
 | 7 | UC11 Compensation | Chứng minh hiểu distributed transaction |
 | 8 | UC07/UC08 Challenge/Hold | Nâng cấp nghiệp vụ risk |
-

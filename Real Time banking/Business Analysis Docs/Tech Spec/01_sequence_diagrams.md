@@ -1,4 +1,4 @@
-# 03. Sequence diagrams
+# 01. Sequence diagrams
 
 ## 1. Happy path - transfer hoàn thành
 
@@ -247,4 +247,3 @@ sequenceDiagram
         Tx->>Tx: Mark PENDING_REVIEW or FAILED
     end
 ```
-

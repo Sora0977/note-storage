@@ -1,4 +1,4 @@
-# 05. Data model và event design
+# 03. Data model và event design
 
 ## 1. Service responsibilities
 
@@ -7,8 +7,8 @@
 | api-gateway | Routing, JWT validation, CORS, rate limit, correlation id |
 | auth-service | Register, login, password hash, JWT, role |
 | user-service | User profile, KYC status, admin verify user |
-| wallet-service | Wallet, deposit, reserve, release, debit, credit, balance view |
-| transaction-service | Transfer API, idempotency, transaction state machine, Saga orchestration |
+| wallet-service | Wallet, deposit, reserve, release, debit, credit, balance view. Dùng optimistic locking với cột `version` và điều kiện `available_balance >= amount` ngay trong SQL update để tránh race condition |
+| transaction-service | Transfer API, idempotency, transaction state machine, Saga orchestration, Saga recovery job |
 | fraud-service | Fraud rules, velocity checks, risk score, blacklist, fraud checks |
 | ledger-service | Double-entry ledger, reversal entry nếu cần, ledger query |
 | notification-service | Kafka event consumer, notification table, WebSocket push |
@@ -69,6 +69,14 @@ transactions
 - risk_score
 - risk_decision
 - failure_reason
+- saga_step
+- compensation_status
+- review_case_id
+- challenge_id
+- approved_by
+- reviewed_by
+- review_note
+- resolved_at
 - created_at
 - updated_at
 
@@ -92,6 +100,9 @@ idempotency_keys
 - created_at
 - expires_at
 
+Unique constraint:
+- (user_id, endpoint, idempotency_key)
+
 outbox_events
 - id
 - aggregate_type
@@ -105,8 +116,13 @@ outbox_events
 processed_messages
 - id
 - message_id
+- business_key
 - consumer_name
 - processed_at
+
+Unique constraints:
+- (message_id, consumer_name)
+- (business_key, consumer_name)
 ```
 
 ### wallet-service
@@ -123,12 +139,35 @@ wallets
 - created_at
 - updated_at
 
+Concurrency rule:
+- Reserve/debit phải dùng optimistic locking qua `version`.
+- Reserve phải kiểm tra `available_balance >= amount` trong cùng câu SQL update.
+- Nếu update count = 0, trả lỗi `INSUFFICIENT_FUNDS` hoặc `WALLET_CONCURRENT_UPDATE`.
+- Không đọc balance rồi update bằng 2 câu tách rời nếu không có lock/version.
+
+SQL pattern gợi ý:
+
+```sql
+UPDATE wallets
+SET available_balance = available_balance - :amount,
+    reserved_balance = reserved_balance + :amount,
+    version = version + 1,
+    updated_at = now()
+WHERE id = :wallet_id
+  AND version = :expected_version
+  AND available_balance >= :amount
+  AND status = 'ACTIVE';
+```
+
+Nếu số dòng update bằng `0`, service phải reload wallet để phân biệt không đủ tiền, wallet bị khóa, hoặc concurrent update.
+
 wallet_holds
 - id
 - transaction_id
 - wallet_id
 - amount
 - status: HELD, RELEASED, CAPTURED
+- expires_at
 - created_at
 - updated_at
 
@@ -144,6 +183,7 @@ wallet_transactions
 processed_messages
 - id
 - message_id
+- business_key
 - consumer_name
 - processed_at
 ```
@@ -171,7 +211,22 @@ fraud_checks
 - risk_score
 - decision: APPROVE, CHALLENGE, HOLD, DECLINE
 - reasons_json
+- reviewed_by
+- review_note
+- reviewed_at
 - created_at
+
+risk_cases optional cho Phase 2 hoặc nếu làm HOLD:
+- id
+- transaction_id
+- status: OPEN, ASSIGNED, APPROVED, REJECTED, CLOSED
+- priority
+- assigned_to
+- decision
+- reason_code
+- analyst_note
+- created_at
+- closed_at
 
 blacklist_accounts
 - id
@@ -183,6 +238,7 @@ blacklist_accounts
 processed_messages
 - id
 - message_id
+- business_key
 - consumer_name
 - processed_at
 ```
@@ -192,16 +248,22 @@ processed_messages
 ```text
 ledger_entries
 - id
+- posting_id
+- posting_key
 - transaction_id
-- wallet_id/account_id
+- wallet_id
 - entry_type: DEBIT, CREDIT, REVERSAL_DEBIT, REVERSAL_CREDIT
 - amount
 - currency
+- balance_before
+- balance_after
+- reversal_of_entry_id
 - created_at
 
 processed_messages
 - id
 - message_id
+- business_key
 - consumer_name
 - processed_at
 ```
@@ -213,6 +275,12 @@ sum(DEBIT) = sum(CREDIT) for each completed transaction
 ```
 
 Ledger không update/xóa entry cũ. Nếu cần sửa sai, tạo reversal entry.
+
+Ledger idempotency:
+
+- `posting_key` nên unique theo business operation, ví dụ `transaction:{transactionId}:settlement`.
+- Một transaction completed chỉ được ghi một posting settlement.
+- Nếu cần rollback, tạo posting reversal mới và liên kết bằng `reversal_of_entry_id`.
 
 ### notification-service
 
@@ -422,7 +490,41 @@ notifications
 | GET | `/notifications` | List notification |
 | WS | `/ws` | WebSocket realtime |
 
-## 7. Request/response transfer
+## 7. Error response chuẩn
+
+API nên dùng RFC 7807 Problem Details để UI và client xử lý lỗi nhất quán.
+
+### Format
+
+```json
+{
+  "type": "https://docs.example.com/errors/FRAUD_001_BLACKLISTED_RECEIVER",
+  "title": "Transfer rejected by fraud rules",
+  "status": 422,
+  "detail": "Receiver is blacklisted",
+  "instance": "/transfers",
+  "errorCode": "FRAUD_001_BLACKLISTED_RECEIVER",
+  "correlationId": "corr_001",
+  "timestamp": "2026-05-04T10:00:00Z"
+}
+```
+
+### Error code gợi ý
+
+| HTTP | errorCode | Khi nào dùng |
+|---:|---|---|
+| 400 | `REQ_001_VALIDATION_FAILED` | Request thiếu field hoặc sai format |
+| 401 | `AUTH_001_UNAUTHORIZED` | Thiếu/sai token |
+| 403 | `AUTH_002_FORBIDDEN` | Không đủ quyền |
+| 409 | `IDEMP_001_KEY_BODY_MISMATCH` | Cùng idempotency key nhưng body khác |
+| 409 | `WALLET_002_CONCURRENT_UPDATE` | Wallet bị update đồng thời, client có thể retry |
+| 422 | `WALLET_001_INSUFFICIENT_FUNDS` | Không đủ số dư |
+| 422 | `FRAUD_001_BLACKLISTED_RECEIVER` | Receiver blacklist |
+| 422 | `FRAUD_002_KYC_NOT_VERIFIED` | Sender chưa KYC verified |
+| 423 | `WALLET_003_WALLET_FROZEN` | Wallet bị khóa |
+| 500 | `SYS_001_INTERNAL_ERROR` | Lỗi hệ thống |
+
+## 8. Request/response transfer
 
 ### Request
 
@@ -458,7 +560,29 @@ Content-Type: application/json
 }
 ```
 
-## 8. Test case tối thiểu
+## 9. Saga recovery
+
+Transaction Service đóng vai trò Saga Orchestrator nên cần cơ chế recovery khi service crash giữa luồng xử lý.
+
+### Rule recovery
+
+- Background job chạy định kỳ, ví dụ mỗi 1 phút.
+- Quét transaction ở trạng thái `RISK_CHECKING`, `PROCESSING`, `COMPENSATING`, `CHALLENGE_REQUIRED`, `HELD_FOR_REVIEW` quá timeout.
+- Nếu transaction đang đợi event nhưng chưa nhận được sau ngưỡng cấu hình, đánh dấu `PENDING_REVIEW` hoặc publish lại command idempotent.
+- Mọi command publish lại phải có `business_key` ổn định để consumer không double-apply.
+- Nếu compensation fail nhiều lần, tạo notification cho admin/analyst.
+
+### Timeout gợi ý
+
+| State | Timeout demo | Hành động |
+|---|---:|---|
+| `RISK_CHECKING` | 2 phút | Publish lại `transaction.created` hoặc mark `PENDING_REVIEW` |
+| `PROCESSING` | 5 phút | Kiểm tra saga step, publish lại command idempotent |
+| `COMPENSATING` | 5 phút | Retry compensation, sau max retry thì `PENDING_REVIEW` |
+| `CHALLENGE_REQUIRED` | 5 phút | Expire OTP, mark `REJECTED` |
+| `HELD_FOR_REVIEW` | 24 giờ demo tùy chọn | Escalate hoặc notify analyst |
+
+## 10. Test case tối thiểu
 
 | Nhóm | Test case |
 |---|---|
@@ -468,9 +592,11 @@ Content-Type: application/json
 | Fraud | Receiver blacklist bị reject |
 | Wallet | Không cho balance âm |
 | Wallet | Reserve làm giảm available balance |
+| Wallet | Hai debit đồng thời không làm balance âm |
 | Ledger | Completed transfer có đúng 1 debit và 1 credit |
 | Ledger | Tổng debit bằng tổng credit |
+| Ledger | Publish lại ledger command không tạo posting trùng |
 | Saga | Fraud reject không gọi wallet |
 | Saga | Credit fail thì compensate debit |
+| Saga | Transaction kẹt PROCESSING quá timeout được recovery |
 | Notification | Transaction completed push WebSocket event |
-

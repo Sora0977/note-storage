@@ -1,4 +1,4 @@
-# 04. Data flow
+# 02. Data flow
 
 ## 1. Context data flow
 
@@ -170,3 +170,30 @@ flowchart TD
 - Inbox/processed_messages giúp tránh Kafka message bị xử lý lặp.
 - Idempotency key giúp tránh API retry tạo duplicate transaction.
 
+## 8. Saga recovery data flow
+
+```mermaid
+flowchart TD
+    Scheduler[Scheduled Saga Recovery Job] --> Query[(transactions)]
+    Query --> Stuck{Stuck state?}
+    Stuck -->|No| Done[Skip]
+    Stuck -->|RISK_CHECKING timeout| RiskRetry[Republish transaction.created with same business_key]
+    Stuck -->|PROCESSING timeout| StepCheck[Check saga_step]
+    Stuck -->|COMPENSATING timeout| CompRetry[Retry compensation command]
+    Stuck -->|CHALLENGE_REQUIRED timeout| ExpireOtp[Expire OTP and mark REJECTED]
+
+    StepCheck --> WalletRetry[Republish idempotent wallet/ledger command]
+    RiskRetry --> Kafka[(Kafka)]
+    WalletRetry --> Kafka
+    CompRetry --> Kafka
+    ExpireOtp --> TxDB[(Transaction DB)]
+
+    Kafka --> Consumers[Idempotent Consumers]
+    Consumers --> Inbox[(processed_messages/business_key)]
+```
+
+Rule:
+
+- Recovery job không được tạo business operation mới.
+- Mọi retry phải dùng cùng `business_key` để consumer bỏ qua nếu đã xử lý.
+- Nếu retry vượt quá max attempt, transaction chuyển `PENDING_REVIEW` và notification được gửi cho admin/analyst.

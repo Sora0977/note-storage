@@ -63,6 +63,7 @@ Hệ thống này giải quyết bằng các pattern:
 - AI fraud detection phức tạp.
 - Event sourcing full system.
 - Admin portal quá đầy đủ.
+- Reconciliation/End-of-Day batch đầy đủ. MVP chỉ định nghĩa khái niệm và kiểm tra ledger cơ bản.
 
 ## 4. Actor và stakeholder
 
@@ -98,6 +99,8 @@ Hệ thống này giải quyết bằng các pattern:
 | Double-entry Ledger | Ghi song song debit và credit cho mỗi money movement |
 | Outbox Event | Event lưu cùng DB transaction trước khi publish Kafka |
 | Inbox/Processed Message | Dấu vết message đã xử lý để chống consume trùng |
+| Reconciliation | Đối soát số dư wallet với tổng ledger entry để phát hiện lệch tiền |
+| End of Day | Quy trình cuối ngày để khóa số liệu, tổng hợp ledger, đối soát và tạo báo cáo |
 
 ## 6. Business capability
 
@@ -112,7 +115,7 @@ Hệ thống này giải quyết bằng các pattern:
 | Saga Coordination | Điều phối fraud, wallet, ledger, notification |
 | Ledger Accounting | Ghi immutable debit/credit entries, đảm bảo tổng debit bằng tổng credit |
 | Notification | Alert realtime qua WebSocket, OTP giả lập nếu có challenge |
-| Auditability | Status history, audit log, ledger trail, correlation id |
+| Auditability | Status history, audit log, review actor/note, ledger trail, correlation id |
 | Observability | Logs, metrics, tracing bằng Zipkin/Grafana nếu còn thời gian |
 
 ## 7. Transaction lifecycle
@@ -213,3 +216,18 @@ Project được xem là đủ chất khi demo được:
 - Transaction status history/audit log đọc được.
 - Docker Compose chạy được toàn bộ hệ thống.
 
+## 11. Reconciliation trong phạm vi demo
+
+Trong doanh nghiệp, reconciliation là nghiệp vụ bắt buộc để kiểm tra dòng tiền không bị lệch giữa các hệ thống. Với project demo này, reconciliation đầy đủ được để ngoài scope, nhưng hệ thống vẫn nên chứng minh được hiểu biết cơ bản:
+
+- Mỗi transaction `COMPLETED` phải có đúng cặp ledger `DEBIT` và `CREDIT`.
+- Tổng `DEBIT` phải bằng tổng `CREDIT` cho từng transaction.
+- Wallet balance có thể được kiểm tra lại từ ledger entries trong demo script hoặc test.
+- Nếu phát hiện lệch, transaction nên được đưa vào trạng thái `PENDING_REVIEW` thay vì tự sửa dữ liệu ledger.
+
+Future improvement:
+
+- End-of-Day batch.
+- Báo cáo đối soát theo ngày.
+- Reconciliation giữa wallet balance, ledger và external payment/bank rail.
+- Report exception cho giao dịch bị lệch hoặc thiếu ledger entry.
