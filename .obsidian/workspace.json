@@ -209,7 +209,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 390.5
+    "width": 448.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -223,7 +223,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "e4e45c2756b5b39d",
+  "active": "0c6102da16e07152",
   "lastOpenFiles": [
     "Real Time banking/Design system/Real_time_banking_payment_risk_platform_document.md",
     "Real Time banking/Business Analysis Docs/05_data_model_va_event_design.md",
