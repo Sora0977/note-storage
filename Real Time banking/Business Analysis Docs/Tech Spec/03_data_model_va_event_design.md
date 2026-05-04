@@ -584,19 +584,20 @@ Transaction Service đóng vai trò Saga Orchestrator nên cần cơ chế recov
 
 ## 10. Test case tối thiểu
 
-| Nhóm | Test case |
-|---|---|
-| Idempotency | Cùng key cùng body trả response cũ |
-| Idempotency | Cùng key khác body trả lỗi |
-| Fraud | Amount threshold tạo score đúng |
-| Fraud | Receiver blacklist bị reject |
-| Wallet | Không cho balance âm |
-| Wallet | Reserve làm giảm available balance |
-| Wallet | Hai debit đồng thời không làm balance âm |
-| Ledger | Completed transfer có đúng 1 debit và 1 credit |
-| Ledger | Tổng debit bằng tổng credit |
-| Ledger | Publish lại ledger command không tạo posting trùng |
-| Saga | Fraud reject không gọi wallet |
-| Saga | Credit fail thì compensate debit |
-| Saga | Transaction kẹt PROCESSING quá timeout được recovery |
-| Notification | Transaction completed push WebSocket event |
+| Nhóm         | Test case                                            |
+| ------------ | ---------------------------------------------------- |
+| Idempotency  | Cùng key cùng body trả response cũ                   |
+| Idempotency  | Cùng key khác body trả lỗi                           |
+| Fraud        | Amount threshold tạo score đúng                      |
+| Fraud        | Receiver blacklist bị reject                         |
+| Wallet       | Không cho balance âm                                 |
+| Wallet       | Reserve làm giảm available balance                   |
+| Wallet       | Hai debit đồng thời không làm balance âm             |
+| Ledger       | Completed transfer có đúng 1 debit và 1 credit       |
+| Ledger       | Tổng debit bằng tổng credit                          |
+| Ledger       | Publish lại ledger command không tạo posting trùng   |
+| Saga         | Fraud reject không gọi wallet                        |
+| Saga         | Credit fail thì compensate debit                     |
+| Saga         | Transaction kẹt PROCESSING quá timeout được recovery |
+| Notification | Transaction completed push WebSocket event           |
+|              |                                                      |
