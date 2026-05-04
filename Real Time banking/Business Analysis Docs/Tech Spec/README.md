@@ -33,7 +33,19 @@ Tech Spec trả lời câu hỏi: **hệ thống được thiết kế và imple
    - Docker Compose topology.
    - Container/service map.
    - Network, database schema, Kafka, Redis, observability.
+   - Centralized logging với Loki + Promtail/Grafana.
    - Local deployment checklist.
+
+5. [05_ci_cd_pipeline.md](05_ci_cd_pipeline.md)
+   - GitHub Actions pipeline.
+   - Unit test, build, Docker image, registry, deployment trigger.
+   - Branching và quality gates.
+
+6. [06_load_testing_plan.md](06_load_testing_plan.md)
+   - Load testing bằng k6 hoặc JMeter.
+   - Transfer API scenarios.
+   - Concurrency/optimistic locking validation.
+   - Metrics cần đo khi test tải.
 
 ## Tech Spec checklist trước khi code
 
@@ -45,4 +57,7 @@ Tech Spec trả lời câu hỏi: **hệ thống được thiết kế và imple
 - Chốt API request/response tối thiểu.
 - Chốt chuẩn error response theo RFC 7807 Problem Details.
 - Chốt Saga recovery job cho transaction bị kẹt.
+- Chốt centralized logging strategy cho microservices.
+- Chốt CI/CD pipeline cơ bản cho multi-service Docker.
+- Chốt load testing plan cho transfer/concurrency.
 - Chốt test case cho idempotency, fraud, wallet, ledger, Saga, notification.

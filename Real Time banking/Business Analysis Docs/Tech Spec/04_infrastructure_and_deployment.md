@@ -43,6 +43,15 @@ flowchart TB
     Fraud --> Zipkin
     Wallet --> Zipkin
     Ledger --> Zipkin
+
+    Auth --> Logs[Loki + Promtail]
+    UserSvc --> Logs
+    Tx --> Logs
+    Wallet --> Logs
+    Fraud --> Logs
+    Ledger --> Logs
+    Notify --> Logs
+    Logs --> Grafana[Grafana]
 ```
 
 ## 3. Container list
@@ -63,6 +72,9 @@ flowchart TB
 | `kafka` | Event broker |
 | `redis` | Feature store/cache cho fraud velocity |
 | `zipkin` | Distributed tracing |
+| `loki` optional | Centralized log storage |
+| `promtail` optional | Collect container logs and push to Loki |
+| `grafana` optional | View metrics/logs/dashboard |
 | `kafka-ui` optional | Xem topic/message khi demo |
 
 ## 4. Database topology
@@ -157,5 +169,52 @@ Redis không phải source of truth cho tiền. Wallet balance và ledger phải
 - Database migration chạy khi service start.
 - Seed data có ít nhất 2 user verified, 1 receiver blacklist, wallet balance demo.
 - Zipkin nhận trace từ gateway, transaction, fraud, wallet, ledger.
+- Logs từ các service được gom về Loki/Grafana nếu bật observability profile.
 - Frontend connect được REST API và WebSocket.
 
+## 9. Centralized logging
+
+Trong microservices, không nên debug bằng cách SSH hoặc exec vào từng container để xem log riêng lẻ. Bản demo nên có chiến lược gom log tập trung.
+
+### Default cho demo
+
+Dùng Loki + Promtail + Grafana vì nhẹ và hợp với Docker Compose:
+
+```text
+service stdout logs
+  -> Docker log driver / container log files
+  -> Promtail
+  -> Loki
+  -> Grafana Explore/Dashboard
+```
+
+### Log fields tối thiểu
+
+Mỗi service nên log dạng JSON hoặc structured log có các field:
+
+```json
+{
+  "timestamp": "2026-05-04T10:00:00Z",
+  "level": "INFO",
+  "service": "transaction-service",
+  "correlationId": "corr_001",
+  "transactionId": "txn_001",
+  "eventType": "transaction.created",
+  "message": "Transaction created"
+}
+```
+
+Field quan trọng:
+
+- `service`
+- `correlationId`
+- `transactionId`
+- `userId` nếu không nhạy cảm
+- `eventId`
+- `eventType`
+- `sagaStep`
+- `errorCode`
+
+### Khi nào dùng ELK
+
+ELK Stack gồm Elasticsearch, Logstash và Kibana phù hợp hơn nếu muốn mô phỏng enterprise logging hoặc full-text search mạnh. Với MVP/CV demo, Loki là đủ; ELK nên để optional/future improvement để tránh Docker Compose quá nặng.
