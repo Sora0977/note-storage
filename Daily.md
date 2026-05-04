@@ -27,3 +27,5 @@ install and setup for mr.Dung
 
 troubleshoot bộ nguồn máy tính dưới nhà máy 
 troubleshoot nas synology duới nhà máy 
+Install software for tablet 
+Cài máy in cho user 

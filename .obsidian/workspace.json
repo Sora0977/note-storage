@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Real Time banking/Planning_60_days.md",
+                "file": "Daily.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Planning_60_days"
+              "title": "Daily"
             }
           }
         ],
@@ -93,8 +93,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "01d2952e0fd07782",
@@ -172,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Real Time banking/Planning_60_days.md",
+                "file": "Daily.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Planning_60_days"
+              "title": "Outline of Daily"
             }
           },
           {
@@ -212,8 +211,8 @@
   },
   "active": "517353569ee15c47",
   "lastOpenFiles": [
-    "Real Time banking/Planning.md",
     "Real Time banking/Planning_60_days.md",
+    "Real Time banking/Planning.md",
     "Real Time banking/Resource.md",
     "Real Time banking/Design system/Real_time_banking_payment_risk_platform_document.md",
     "Real Time banking/Design system/Pattern.md",
