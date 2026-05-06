@@ -31,3 +31,8 @@ Install software for tablet
 Cài máy in cho user 
 Setup camera for tablet in factory
 
+
+Install office for miss Linh 
+Fix máy in dưới xưởng 
+Setup new laptop and install necessary app for new laptop
+set up new laptop

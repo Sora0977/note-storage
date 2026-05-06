@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "44fa4e7bc9353a43",
+        "id": "0aea57e3bda11b7c",
         "type": "tabs",
         "children": [
           {
-            "id": "59b909aba5ac57a9",
+            "id": "b9e959ef345c937b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Real Time banking/Design system/Real_time_banking_payment_risk_platform_document.md",
+                "file": "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/chuong-2-phuong-phap-thuc-hien.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Real_time_banking_payment_risk_platform_document"
-            }
-          },
-          {
-            "id": "517353569ee15c47",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Real Time banking/Business Analysis Docs/Tech Spec/04_infrastructure_and_deployment.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "04_infrastructure_and_deployment"
+              "title": "chuong-2-phuong-phap-thuc-hien"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -93,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 516.5041885375977
   },
   "right": {
     "id": "01d2952e0fd07782",
@@ -171,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Real Time banking/Business Analysis Docs/Tech Spec/04_infrastructure_and_deployment.md",
+                "file": "Real Time banking/Planning_60_days.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 04_infrastructure_and_deployment"
+              "title": "Outline of Planning_60_days"
             }
           },
           {
@@ -209,37 +194,52 @@
       "bases:Create new base": false
     }
   },
-  "active": "517353569ee15c47",
+  "active": "b9e959ef345c937b",
   "lastOpenFiles": [
-    "Real Time banking/Business Analysis Docs/Tech Spec/README.md",
-    "Real Time banking/Business Analysis Docs/README.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec/06_load_testing_plan.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec/05_ci_cd_pipeline.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec/04_infrastructure_and_deployment.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec/03_data_model_va_event_design.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec/02_data_flow.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/chuong-1-gioi-thieu.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/chuong-2-phuong-phap-thuc-hien.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/README.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/chuong-4-ket-luan.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/chuong-3-thiet-ke.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/apply_remaining.js",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/check_diagrams.js",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/apply_diagrams.js",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters/chuong-4-ket-luan.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters/chuong-3-thiet-ke.md",
     "Real Time banking/Business Analysis Docs/PRD/01_nghiep_vu_tong_quan.md",
-    "Daily.md",
-    "Hotel booking service",
-    "Real Time banking/Planning_60_days.md",
-    "Real Time banking/Planning.md",
-    "Real Time banking/Resource.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/update_diagrams.py",
     "Real Time banking/Design system/Real_time_banking_payment_risk_platform_document.md",
-    "Real Time banking/Design system/Pattern.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec/01_sequence_diagrams.md",
-    "Real Time banking/Business Analysis Docs/PRD/README.md",
-    "Real Time banking/Business Analysis Docs/PRD/02_use_cases.md",
-    "Real Time banking/Business Analysis Docs/Tech Spec",
-    "Real Time banking/Business Analysis Docs/PRD",
-    "Real Time banking/Business Analysis Docs/05_data_model_va_event_design.md",
-    "Real Time banking/Business Analysis Docs/04_data_flow.md",
-    "Real Time banking/Business Analysis Docs/03_sequence_diagrams.md",
-    "Real Time banking/Business Analysis Docs/02_use_cases.md",
-    "Real Time banking/Business Analysis Docs/01_nghiep_vu_tong_quan.md",
-    "Real Time banking/Business Analysis Docs",
-    "Real Time banking/Design system",
-    "Real Time banking",
-    "Para.md",
-    "Welcome.md"
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters/chuong-2-phuong-phap-thuc-hien.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters/chuong-1-gioi-thieu.md",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat.md",
+    "Daily.md",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/chapters 1/README.md",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/chapters 1/chuong-4-ket-luan.md",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/chapters 1/chuong-3-thiet-ke.md",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/chapters 1/chuong-2-phuong-phap-thuc-hien.md",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/chapters 1/chuong-1-gioi-thieu.md",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/chapters 1",
+    "format_chapters_markdown.py",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters/README.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-125.png",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-124.png",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-123.png",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-122.png",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-121.png",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-119.png",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-120.png",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-118.png",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-117.png",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-116.png",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup",
+    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_fixed/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat.md",
+    "Real Time banking/Planning_60_days.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/03_data_model_va_event_design.md"
   ]
 }
