@@ -35,4 +35,21 @@ Setup camera for tablet in factory
 Install office for miss Linh 
 Fix máy in dưới xưởng 
 Setup new laptop and install necessary app for new laptop
-set up new laptop
+set up new laptop and new pc
+install software for table 
+
+
+Fixing network pc in factory
+Setup new PC and install necessary app for new PC
+Install software for tablet 
+sửa máy in tem ở dưới nhà máy 
+
+
+
+3.13 ->3.34 ->  3.48
+
+Flow
+3.49 ->3.63 -> 3.84
+
+- Error
+	- 
