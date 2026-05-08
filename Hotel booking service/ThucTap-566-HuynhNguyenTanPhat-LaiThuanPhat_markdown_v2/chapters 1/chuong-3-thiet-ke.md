@@ -4,143 +4,12 @@
 
 ### 3.1.1 Mức ý niệm
 
-![image9.png](../images/image-009.png)
 > Hình 2.9: Mô hình dữ liệu mức ý niệm
 
-```plantuml
-@startuml
-!theme plain
-
-skinparam monochrome true
-skinparam shadowing false
-skinparam backgroundColor white
-skinparam defaultFontName "Times New Roman"
-skinparam defaultTextAlignment center
-skinparam classAttributeIconSize 0
-skinparam linetype ortho
-hide methods
-
-class "Amenity" as ConceptAmenity {
-  name
-  type
-}
-
-class "Hotel" as ConceptHotel {
-  name
-  star_rating
-  location
-  contact_phone
-}
-
-class "Policy" as ConceptPolicy {
-  checkin_time
-  checkout_time
-  cancellation
-}
-
-class "Review" as ConceptReview {
-  point
-  description
-}
-
-class "User" as ConceptUser {
-  full_name
-  email
-  phone
-  password
-  activate
-}
-
-class "Role" as ConceptRole {
-  name
-}
-
-class "Payment" as ConceptPayment {
-  code
-  method
-  status
-  price
-}
-
-class "Booking" as ConceptBooking {
-  reference_code
-  status
-  total_price
-  checkin_date
-  checkout_date
-}
-
-class "Room" as ConceptRoom {
-  name
-  type
-  price
-  capacity
-  amount
-}
-
-class "Image" as ConceptImage {
-  path
-}
-
-diamond "Có" as AmenityHotel
-diamond "Có" as AmenityRoom
-diamond "Gồm" as HotelRoom
-diamond "Gồm" as HotelImage
-diamond "Gồm" as RoomImage
-diamond "Gồm các\nphòng" as BookingRoom
-diamond "Áp dụng" as HotelPolicy
-diamond "Nhận đánh giá" as HotelReview
-diamond "Viết" as UserReview
-diamond "Quản lý" as UserHotel
-diamond "Có vai trò" as UserRole
-diamond "Đặt phòng" as UserBooking
-diamond "Thanh toán" as BookingPayment
-
-ConceptAmenity "*" -- AmenityHotel
-AmenityHotel -- "*" ConceptHotel
-
-ConceptAmenity "*" -- AmenityRoom
-AmenityRoom -- "*" ConceptRoom
-
-ConceptHotel "1" -- HotelRoom
-HotelRoom -- "1..*" ConceptRoom
-
-ConceptHotel "1" -- HotelImage
-HotelImage -- "0..*" ConceptImage
-
-ConceptRoom "1" -- RoomImage
-RoomImage -- "0..*" ConceptImage
-
-ConceptRoom "*" -- BookingRoom
-BookingRoom -- "*" ConceptBooking
-
-ConceptHotel "1" -- HotelPolicy
-HotelPolicy -- "0..*" ConceptPolicy
-
-ConceptHotel "1" -- HotelReview
-HotelReview -- "0..*" ConceptReview
-
-ConceptReview "0..*" -- UserReview
-UserReview -- "1" ConceptUser
-
-ConceptHotel "0..*" -- UserHotel
-UserHotel -- "1" ConceptUser
-
-ConceptUser "1" -- UserRole
-UserRole -- "1" ConceptRole
-
-ConceptUser "1" -- UserBooking
-UserBooking -- "0..*" ConceptBooking
-
-ConceptBooking "1" -- BookingPayment
-BookingPayment -- "0..*" ConceptPayment
-@enduml
-```
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-009.png]]
 
 ### 3.1.2 Mức luận lý
 
-![image10.png](../images/image-010.png)
-> Hình 2.10: Mô hình dữ liệu mức luận lý
 
 ```plantuml
 @startuml
@@ -270,11 +139,9 @@ room ||--o{ room_amenity
 amenity ||--o{ room_amenity
 @enduml
 ```
-
+> Hình 2.10: Mô hình dữ liệu mức luận lý
 ### 3.1.3 Mức vật lý
 
-![image11.png](../images/image-011.png)
-> Hình 2.11: Mô hình dữ liệu mức vật lý
 
 ```plantuml
 @startuml
@@ -414,7 +281,7 @@ room_physical ||..o{ room_amenity_physical
 amenity_physical ||..o{ room_amenity_physical
 @enduml
 ```
-
+> Hình 2.11: Mô hình dữ liệu mức vật lý
 ### 3.1.4 Mô tả chi tiết bảng
 
 Bảng Role
@@ -537,41 +404,23 @@ Bảng User_Role
 
 #### 3.2.1.1 Usecase đăng nhập
 
-![image12.png|697](../images/image-012.png)
 > Hình 3.1: Usecase đăng nhập
 
 ```plantuml
 @startuml
 !theme plain
 left to right direction
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam actorStyle awesome
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #222222
-  ArrowColor #222222
-}
-skinparam rectangle {
-  BackgroundColor #F8FAFC
-  BorderColor #475569
-}
 
 actor "Khách (Guest)" as Guest
 
-rectangle "Module Đăng nhập" as LoginModule {
-  package "Xác thực thông tin" {
-    usecase "Đăng nhập" as Login
-    usecase "Kiểm tra Email tồn tại" as CheckEmail
-    usecase "Kiểm tra mật khẩu" as CheckPassword
-    usecase "Kiểm tra trạng thái khóa\n(Activate)" as CheckActive
-  }
-
-  package "Kết quả xử lý" {
-    usecase "Tạo JWT Token" as Token
-    usecase "Thông báo sai thông tin" as WrongInfo
-    usecase "Thông báo tài khoản bị khóa" as LockedAccount
-  }
+rectangle "Module Đăng nhập" {
+  usecase "Đăng nhập" as Login
+  usecase "Kiểm tra Email tồn tại" as CheckEmail
+  usecase "Kiểm tra mật khẩu" as CheckPassword
+  usecase "Kiểm tra trạng thái khóa\n(Activate)" as CheckActive
+  usecase "Tạo JWT Token" as Token
+  usecase "Thông báo sai thông tin" as WrongInfo
+  usecase "Thông báo tài khoản bị khóa" as LockedAccount
 }
 
 Guest --> Login
@@ -579,8 +428,8 @@ Login ..> CheckEmail : <<include>>
 Login ..> CheckPassword : <<include>>
 Login ..> CheckActive : <<include>>
 Login ..> Token : <<include>>\n[Thông tin hợp lệ]
-WrongInfo .> Login : <<extend>>\n[Sai Email hoặc mật khẩu]
-LockedAccount .> Login : <<extend>>\n[Activate == false]
+WrongInfo .up.> Login : <<extend>>\n[Sai Email hoặc mật khẩu]
+LockedAccount .up.> Login : <<extend>>\n[Activate == false]
 @enduml
 ```
 
@@ -600,43 +449,22 @@ LockedAccount .> Login : <<extend>>\n[Activate == false]
 
 #### 3.2.1.2 Usecase đăng ký
 
-![image13.png](../images/image-013.png)
 > Hình 3.2: Usecase đăng ký
 
 ```plantuml
 @startuml
 !theme plain
 left to right direction
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam actorStyle awesome
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #222222
-  ArrowColor #222222
-}
-skinparam rectangle {
-  BackgroundColor #F8FAFC
-  BorderColor #475569
-}
 
 actor "Khách (Guest)" as Guest
 
-rectangle "Module Đăng ký tài khoản" as RegisterModule {
-  package "Tiếp nhận & kiểm tra dữ liệu" {
-    usecase "Đăng ký tài khoản" as Register
-    usecase "Kiểm tra định dạng dữ liệu" as ValidateData
-    usecase "Kiểm tra Email đã tồn tại" as CheckEmail
-  }
-
-  package "Tạo tài khoản" {
-    usecase "Mã hóa mật khẩu" as HashPassword
-    usecase "Gán quyền mặc định\n(Customer)" as AssignRole
-  }
-
-  package "Ngoại lệ" {
-    usecase "Hiển thị lỗi Validation" as ValidationError
-  }
+rectangle "Module Đăng ký tài khoản" {
+  usecase "Đăng ký tài khoản" as Register
+  usecase "Kiểm tra định dạng dữ liệu" as ValidateData
+  usecase "Kiểm tra Email đã tồn tại" as CheckEmail
+  usecase "Mã hóa mật khẩu" as HashPassword
+  usecase "Gán quyền mặc định\n(Customer)" as AssignRole
+  usecase "Hiển thị lỗi Validation" as ValidationError
 }
 
 Guest --> Register
@@ -644,89 +472,64 @@ Register ..> ValidateData : <<include>>
 Register ..> CheckEmail : <<include>>
 Register ..> HashPassword : <<include>>
 Register ..> AssignRole : <<include>>
-ValidationError .> Register : <<extend>>\n[Dữ liệu sai hoặc Email trùng]
+ValidationError .up.> Register : <<extend>>\n[Dữ liệu sai hoặc Email trùng]
 @enduml
 ```
 
 Đặc tả Usecase đăng ký
 
-| Mục | Nội dung |
-| --- | --- |
-| Tên Use case | Đăng ký tài khoản |
-| Actor | Khách (Guest) |
-| Mô tả | Người dùng (Khách) cung cấp thông tin cá nhân để tạo tài khoản mới trên hệ thống. Tài khoản sau khi tạo sẽ có quyền mặc định là Customer. |
-| Pre-conditions | Actor đang ở trang đăng ký và chưa đăng nhập vào hệ thống. |
-| Post-conditions | Success: Tài khoản mới được tạo trong cơ sở dữ liệu với mật khẩu đã mã hóa và quyền hạn chính xác.<br>Fail: Hệ thống hiển thị thông báo lỗi cụ thể (do định dạng sai hoặc email đã tồn tại). |
-| Luồng sự kiện chính | 1. Actor nhập các thông tin đăng ký (Email, Mật khẩu, Họ tên, v.v.).<br>2. Actor nhấn nút "Đăng ký".<br>3. Hệ thống thực hiện kiểm tra định dạng dữ liệu.<br>4. Hệ thống thực hiện kiểm tra Email đã tồn tại.<br>5. Hệ thống thực hiện mã hóa mật khẩu.<br>6. Hệ thống thực hiện gán quyền mặc định (Customer).<br>7. Hệ thống lưu thông tin và thông báo đăng ký thành công. |
-| Luồng sự kiện phụ | - Nếu dữ liệu nhập vào sai định dạng hoặc Email đã được sử dụng: Hệ thống thực hiện hiển thị lỗi Validation. |
-| <Include Use Case><br>Quy trình Xử lý dữ liệu | - Kiểm tra định dạng: Hệ thống xác thực tính hợp lệ của email, độ mạnh mật khẩu, và các trường bắt buộc.<br>- Kiểm tra Email: Hệ thống truy vấn xem email đã có trong hệ thống chưa.<br>- Mã hóa mật khẩu: Hệ thống chuyển đổi mật khẩu thô sang chuỗi mã hóa (hash) để bảo mật.<br>- Gán quyền: Hệ thống mặc định thiết lập vai trò (Role) cho tài khoản mới là "Customer". |
-| <Extend Use Case><br>Hiển thị lỗi Validation | Điều kiện: Khi quy trình kiểm tra định dạng thất bại hoặc quy trình kiểm tra Email phát hiện trùng lặp.<br>Hành động:<br>- Hệ thống hiển thị thông báo chi tiết lỗi (ví dụ: "Email không hợp lệ", "Email đã tồn tại", "Mật khẩu quá ngắn").<br>- Hệ thống yêu cầu người dùng nhập lại các thông tin chưa hợp lệ. |
+| Mục                                           | Nội dung                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tên Use case                                  | Đăng ký tài khoản                                                                                                                                                                                                                                                                                                                                                             |
+| Actor                                         | Khách (Guest)                                                                                                                                                                                                                                                                                                                                                                 |
+| Mô tả                                         | Người dùng (Khách) cung cấp thông tin cá nhân để tạo tài khoản mới trên hệ thống. Tài khoản sau khi tạo sẽ có quyền mặc định là Customer.                                                                                                                                                                                                                                     |
+| Pre-conditions                                | Actor đang ở trang đăng ký và chưa đăng nhập vào hệ thống.                                                                                                                                                                                                                                                                                                                    |
+| Post-conditions                               | Success: Tài khoản mới được tạo trong cơ sở dữ liệu với mật khẩu đã mã hóa và quyền hạn chính xác.<br>Fail: Hệ thống hiển thị thông báo lỗi cụ thể (do định dạng sai hoặc email đã tồn tại).                                                                                                                                                                                  |
+| Luồng sự kiện chính                           | 1. Actor nhập các thông tin đăng ký (Email, Mật khẩu, Họ tên, v.v.).<br>2. Actor nhấn nút "Đăng ký".<br>3. Hệ thống thực hiện kiểm tra định dạng dữ liệu.<br>4. Hệ thống thực hiện kiểm tra Email đã tồn tại.<br>5. Hệ thống thực hiện mã hóa mật khẩu.<br>6. Hệ thống thực hiện gán quyền mặc định (Customer).<br>7. Hệ thống lưu thông tin và thông báo đăng ký thành công. |
+| Luồng sự kiện phụ                             | - Nếu dữ liệu nhập vào sai định dạng hoặc Email đã được sử dụng: Hệ thống thực hiện hiển thị lỗi Validation.                                                                                                                                                                                                                                                                  |
+| <Include Use Case><br>Quy trình Xử lý dữ liệu | - Kiểm tra định dạng: Hệ thống xác thực tính hợp lệ của email, độ mạnh mật khẩu, và các trường bắt buộc.<br>- Kiểm tra Email: Hệ thống truy vấn xem email đã có trong hệ thống chưa.<br>- Mã hóa mật khẩu: Hệ thống chuyển đổi mật khẩu thô sang chuỗi mã hóa (hash) để bảo mật.<br>- Gán quyền: Hệ thống mặc định thiết lập vai trò (Role) cho tài khoản mới là "Customer".  |
+| <Extend Use Case><br>Hiển thị lỗi Validation  | Điều kiện: Khi quy trình kiểm tra định dạng thất bại hoặc quy trình kiểm tra Email phát hiện trùng lặp.<br>Hành động:<br>- Hệ thống hiển thị thông báo chi tiết lỗi (ví dụ: "Email không hợp lệ", "Email đã tồn tại", "Mật khẩu quá ngắn").<br>- Hệ thống yêu cầu người dùng nhập lại các thông tin chưa hợp lệ.                                                              |
 
 #### 3.2.1.3 Usecase quản lý thông tin cá nhân
 
-![image14.png](../images/image-014.png)
 > Hình 3.3: Usecase quản lý thông tin cá nhân
 
 ```plantuml
 @startuml
 !theme plain
 left to right direction
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam actorStyle awesome
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #222222
-  ArrowColor #222222
-}
-skinparam rectangle {
-  BackgroundColor #F8FAFC
-  BorderColor #475569
-}
 
 actor "Người dùng (User)" as User
 
-rectangle "Hệ thống Quản lý thông tin cá nhân" as ProfileSystem {
-  package "Chức năng tài khoản" {
-    usecase "Quản lý Tài khoản & Cá nhân" as Account
-    usecase "Cập nhật thông tin cá nhân" as UpdateProfile
-    usecase "Đổi mật khẩu" as ChangePassword
-    usecase "Xem thông tin Profile" as ViewProfile
-    usecase "Xóa tài khoản cá nhân" as DeleteAccount
-    usecase "Xem lịch sử đặt phòng" as BookingHistory
-  }
-
-  package "Xác thực & kiểm tra" {
-    usecase "Xác thực phiên đăng nhập" as VerifySession
-    usecase "Lấy thông tin User từ Context" as GetContext
-    usecase "Kiểm tra tính hợp lệ dữ liệu\n(Validate Form)" as ValidateForm
-    usecase "Xác thực mật khẩu cũ" as VerifyOldPassword
-    usecase "Kiểm tra trùng mật khẩu cũ" as CheckDuplicatePassword
-  }
-
-  package "Ngoại lệ" {
-    usecase "Thông báo lỗi Validation" as ValidationError
-    usecase "Thông báo sai mật khẩu" as WrongPassword
-  }
+rectangle "Hệ thống Quản lý thông tin cá nhân" {
+  usecase "Quản lý Tài khoản & Cá nhân" as Account
+  usecase "Xem thông tin Profile" as ViewProfile
+  usecase "Cập nhật thông tin cá nhân" as UpdateProfile
+  usecase "Đổi mật khẩu" as ChangePassword
+  usecase "Xóa tài khoản cá nhân" as DeleteAccount
+  usecase "Xem lịch sử đặt phòng" as BookingHistory
+  usecase "Xác thực phiên đăng nhập" as VerifySession
+  usecase "Lấy thông tin User từ Context" as GetContext
+  usecase "Kiểm tra tính hợp lệ dữ liệu\n(Validate Form)" as ValidateForm
+  usecase "Xác thực mật khẩu cũ" as VerifyOldPassword
+  usecase "Kiểm tra trùng mật khẩu cũ" as CheckDuplicatePassword
+  usecase "Thông báo lỗi Validation" as ValidationError
+  usecase "Thông báo sai mật khẩu" as WrongPassword
 }
 
 User --> Account
+ViewProfile -up-|> Account
 UpdateProfile -up-|> Account
 ChangePassword -up-|> Account
-ViewProfile -up-|> Account
 DeleteAccount -up-|> Account
 BookingHistory -up-|> Account
 Account ..> VerifySession : <<include>>
 Account ..> GetContext : <<include>>
-UpdateProfile ..> GetContext : <<include>>
 UpdateProfile ..> ValidateForm : <<include>>
-ViewProfile ..> GetContext : <<include>>
-DeleteAccount ..> GetContext : <<include>>
-BookingHistory ..> GetContext : <<include>>
 ChangePassword ..> VerifyOldPassword : <<include>>
 ChangePassword ..> CheckDuplicatePassword : <<include>>
-ValidationError .> UpdateProfile : <<extend>>\n[Dữ liệu không hợp lệ]
-WrongPassword .> ChangePassword : <<extend>>\n[Mật khẩu cũ sai]
+ValidationError .up.> UpdateProfile : <<extend>>\n[Dữ liệu không hợp lệ]
+WrongPassword .up.> ChangePassword : <<extend>>\n[Mật khẩu cũ sai]
 @enduml
 ```
 
@@ -805,46 +608,25 @@ WrongPassword .> ChangePassword : <<extend>>\n[Mật khẩu cũ sai]
 
 #### 3.2.1.4 Usecase quản trị người dùng
 
-![image15.png](../images/image-015.png)
 > Hình 3.4: Usecase quản lý người dùng
 
 ```plantuml
 @startuml
 !theme plain
 left to right direction
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam actorStyle awesome
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #222222
-  ArrowColor #222222
-}
-skinparam rectangle {
-  BackgroundColor #F8FAFC
-  BorderColor #475569
-}
 
 actor "Quản trị viên (Admin)" as Admin
 
-rectangle "Hệ thống Quản trị người dùng" as UserAdminSystem {
-  package "Chức năng quản trị" {
-    usecase "Quản trị người dùng" as UserAdmin
-    usecase "Xem danh sách người dùng" as ListUsers
-    usecase "Khóa tài khoản người dùng" as LockUser
-    usecase "Mở khóa tài khoản người dùng" as UnlockUser
-  }
-
-  package "Xác thực & xử lý" {
-    usecase "Xác thực phiên Admin" as VerifyAdminSession
-    usecase "Kiểm tra quyền Admin" as CheckAdmin
-    usecase "Tìm User theo ID" as FindUser
-    usecase "Cập nhật trạng thái Activate" as UpdateActive
-  }
-
-  package "Ngoại lệ" {
-    usecase "Thông báo User không tồn tại" as UserNotFound
-  }
+rectangle "Hệ thống Quản trị người dùng" {
+  usecase "Quản trị người dùng" as UserAdmin
+  usecase "Xem danh sách người dùng" as ListUsers
+  usecase "Khóa tài khoản người dùng" as LockUser
+  usecase "Mở khóa tài khoản người dùng" as UnlockUser
+  usecase "Xác thực phiên Admin" as VerifyAdminSession
+  usecase "Kiểm tra quyền Admin" as CheckAdmin
+  usecase "Tìm User theo ID" as FindUser
+  usecase "Cập nhật trạng thái Activate" as UpdateActive
+  usecase "Thông báo User không tồn tại" as UserNotFound
 }
 
 Admin --> UserAdmin
@@ -857,8 +639,8 @@ LockUser ..> FindUser : <<include>>
 LockUser ..> UpdateActive : <<include>>
 UnlockUser ..> FindUser : <<include>>
 UnlockUser ..> UpdateActive : <<include>>
-UserNotFound .> LockUser : <<extend>>\n[Không tìm thấy ID]
-UserNotFound .> UnlockUser : <<extend>>\n[Không tìm thấy ID]
+UserNotFound .up.> LockUser : <<extend>>\n[Không tìm thấy ID]
+UserNotFound .up.> UnlockUser : <<extend>>\n[Không tìm thấy ID]
 @enduml
 ```
 
@@ -907,49 +689,28 @@ UserNotFound .> UnlockUser : <<extend>>\n[Không tìm thấy ID]
 
 #### 3.2.1.5 Usecase quản lý phòng
 
-![image16.png](../images/image-016.png)
 > Hình 3.5: Usecase quản lý phòng
 
 ```plantuml
 @startuml
 !theme plain
 left to right direction
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam actorStyle awesome
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #222222
-  ArrowColor #222222
-}
-skinparam rectangle {
-  BackgroundColor #F8FAFC
-  BorderColor #475569
-}
 
 actor "Quản trị viên (Admin)" as Admin
 
-rectangle "Hệ thống Quản lý Phòng" as RoomSystem {
-  package "Chức năng quản lý phòng" {
-    usecase "Quản lý Phòng" as RoomManage
-    usecase "Thêm phòng mới" as AddRoom
-    usecase "Cập nhật thông tin phòng" as UpdateRoom
-    usecase "Xóa phòng" as DeleteRoom
-  }
-
-  package "Xác thực & xử lý dữ liệu" {
-    usecase "Xác thực phiên Admin" as VerifyAdminSession
-    usecase "Kiểm tra quyền sở hữu Khách sạn" as CheckHotelOwner
-    usecase "Kiểm tra phòng tồn tại" as CheckRoom
-    usecase "Upload hình ảnh\n(Cloudinary)" as UploadImage
-    usecase "Thêm tiện ích cho phòng" as AddAmenity
-  }
-
-  package "Ngoại lệ" {
-    usecase "Thông báo phòng không tìm thấy" as RoomNotFound
-    usecase "Thông báo lỗi định dạng ảnh" as ImageError
-    usecase "Thông báo lỗi không có quyền" as PermissionError
-  }
+rectangle "Hệ thống Quản lý Phòng" {
+  usecase "Quản lý Phòng" as RoomManage
+  usecase "Thêm phòng mới" as AddRoom
+  usecase "Cập nhật thông tin phòng" as UpdateRoom
+  usecase "Xóa phòng" as DeleteRoom
+  usecase "Xác thực phiên Admin" as VerifyAdminSession
+  usecase "Kiểm tra quyền sở hữu Khách sạn" as CheckHotelOwner
+  usecase "Kiểm tra phòng tồn tại" as CheckRoom
+  usecase "Upload hình ảnh\n(Cloudinary)" as UploadImage
+  usecase "Thêm tiện ích cho phòng" as AddAmenity
+  usecase "Thông báo phòng không tìm thấy" as RoomNotFound
+  usecase "Thông báo lỗi định dạng ảnh" as ImageError
+  usecase "Thông báo lỗi không có quyền" as PermissionError
 }
 
 Admin --> RoomManage
@@ -964,12 +725,12 @@ UpdateRoom ..> CheckHotelOwner : <<include>>
 UpdateRoom ..> CheckRoom : <<include>>
 UpdateRoom ..> UploadImage : <<include>>
 DeleteRoom ..> CheckRoom : <<include>>
-RoomNotFound .> UpdateRoom : <<extend>>\n[Phòng không tồn tại]
-RoomNotFound .> DeleteRoom : <<extend>>\n[Phòng không tồn tại]
-ImageError .> AddRoom : <<extend>>\n[File ảnh không hợp lệ]
-ImageError .> UpdateRoom : <<extend>>\n[File ảnh không hợp lệ]
-PermissionError .> AddRoom : <<extend>>\n[Không phải chủ sở hữu]
-PermissionError .> UpdateRoom : <<extend>>\n[Không phải chủ sở hữu]
+RoomNotFound .up.> UpdateRoom : <<extend>>\n[Phòng không tồn tại]
+RoomNotFound .up.> DeleteRoom : <<extend>>\n[Phòng không tồn tại]
+ImageError .up.> AddRoom : <<extend>>\n[File ảnh không hợp lệ]
+ImageError .up.> UpdateRoom : <<extend>>\n[File ảnh không hợp lệ]
+PermissionError .up.> AddRoom : <<extend>>\n[Không phải chủ sở hữu]
+PermissionError .up.> UpdateRoom : <<extend>>\n[Không phải chủ sở hữu]
 @enduml
 ```
 
@@ -1020,53 +781,33 @@ PermissionError .> UpdateRoom : <<extend>>\n[Không phải chủ sở hữu]
 
 #### 3.2.1.6 Usecase tra cứu phòng
 
-![image17.png](../images/image-017.png)
 > Hình 3.6: Usecase tra cứu phòng
 
 ```plantuml
 @startuml
 !theme plain
 left to right direction
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam actorStyle awesome
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #222222
-  ArrowColor #222222
-}
-skinparam rectangle {
-  BackgroundColor #F8FAFC
-  BorderColor #475569
-}
 
 actor "Khách (Guest)" as Guest
 actor "Người dùng (User)" as User
-User -up-|> Guest
 
-rectangle "Hệ thống Tra cứu Phòng" as RoomSearchSystem {
-  package "Chức năng tra cứu" {
-    usecase "Khám phá & Tra cứu Phòng" as SearchRoom
-    usecase "Xem danh sách tất cả phòng" as ViewAllRooms
-    usecase "Tìm phòng trống theo ngày" as FindAvailable
-    usecase "Xem chi tiết phòng" as ViewRoomDetail
-    usecase "Tìm kiếm phòng\n(Keyword)" as KeywordSearch
-    usecase "Xem loại phòng\n(Enum)" as ViewRoomType
-  }
-
-  package "Xử lý dữ liệu" {
-    usecase "Truy vấn DB\n(Lọc phòng đã đặt)" as QueryDB
-    usecase "Kiểm tra tính hợp lệ ngày tháng" as ValidateDate
-  }
-
-  package "Ngoại lệ" {
-    usecase "Thông báo ngày không hợp lệ" as InvalidDate
-    usecase "Thông báo không tìm thấy\n(404)" as NotFound
-    usecase "Thông báo không có kết quả" as NoResult
-  }
+rectangle "Hệ thống Tra cứu Phòng" {
+  usecase "Khám phá & Tra cứu Phòng" as SearchRoom
+  usecase "Xem danh sách tất cả phòng" as ViewAllRooms
+  usecase "Tìm phòng trống theo ngày" as FindAvailable
+  usecase "Xem chi tiết phòng" as ViewRoomDetail
+  usecase "Tìm kiếm phòng\n(Keyword)" as KeywordSearch
+  usecase "Xem loại phòng\n(Enum)" as ViewRoomType
+  usecase "Truy vấn DB\n(Lọc phòng đã đặt)" as QueryDB
+  usecase "Kiểm tra tính hợp lệ ngày tháng" as ValidateDate
+  usecase "Thông báo ngày không hợp lệ" as InvalidDate
+  usecase "Thông báo không tìm thấy\n(404)" as NotFound
+  usecase "Thông báo không có kết quả" as NoResult
 }
 
+User -up-|> Guest
 Guest --> SearchRoom
+User --> SearchRoom
 ViewAllRooms -up-|> SearchRoom
 FindAvailable -up-|> SearchRoom
 ViewRoomDetail -up-|> SearchRoom
@@ -1078,9 +819,9 @@ FindAvailable ..> QueryDB : <<include>>
 ViewRoomDetail ..> QueryDB : <<include>>
 KeywordSearch ..> QueryDB : <<include>>
 ViewRoomType ..> QueryDB : <<include>>
-InvalidDate .> FindAvailable : <<extend>>\n[Ngày không hợp lệ]
-NotFound .> ViewRoomDetail : <<extend>>\n[Không tìm thấy phòng]
-NoResult .> KeywordSearch : <<extend>>\n[Không có kết quả phù hợp]
+InvalidDate .up.> FindAvailable : <<extend>>\n[Ngày không hợp lệ]
+NotFound .up.> ViewRoomDetail : <<extend>>\n[Không tìm thấy phòng]
+NoResult .up.> KeywordSearch : <<extend>>\n[Không có kết quả phù hợp]
 @enduml
 ```
 
@@ -1158,88 +899,53 @@ NoResult .> KeywordSearch : <<extend>>\n[Không có kết quả phù hợp]
 | <Extend Use Case><br>Thông báo lỗi định dạng ảnh | Điều kiện: Khi file ảnh mới tải lên không đúng định dạng cho phép.<br>Hành động:<br>- Hệ thống hiển thị cảnh báo và yêu cầu chọn file khác. |
 #### 3.2.1.7 Usecase quản lý khách sạn
 
-![image18.png](../images/image-018.png)
 > Hình 3.7: Usecase quản lý khách sạn
 
 ```plantuml
 @startuml
 !theme plain
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam defaultFontName "Times New Roman"
-skinparam ArrowColor #374151
-skinparam actor {
-  BorderColor #7C2D12
-  FontColor #7C2D12
-}
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #1D4ED8
-  FontColor #111827
-}
 left to right direction
 
 actor "Quản trị viên (Admin)" as Admin
 
 rectangle "Hệ thống Quản lý Khách sạn" {
-  package "Nhóm chức năng quản lý" #E8F3FF {
-    usecase "Quản lý Khách sạn" as HotelManage
-    usecase "Thêm khách sạn mới" as AddHotel
-    usecase "Cập nhật khách sạn" as UpdateHotel
-    usecase "Xóa khách sạn" as DeleteHotel
-    usecase "Xem danh sách khách sạn của tôi" as MyHotels
-  }
-
-  package "Nhóm xác thực & phân quyền" #FFF4E6 {
-    usecase "Đăng nhập hệ thống" as LoginSystem
-    usecase "Kiểm tra quyền Admin" as CheckAdmin
-    usecase "Kiểm tra quyền sở hữu\n(Check Owner)" as CheckOwner
-  }
-
-  package "Nhóm kiểm tra dữ liệu & tích hợp" #ECFDF3 {
-    usecase "Kiểm tra khách sạn tồn tại" as CheckHotelExists
-    usecase "Kiểm tra trùng tên & địa điểm" as CheckDuplicate
-    usecase "Upload hình ảnh (Cloudinary)" as UploadImage
-  }
-
-  package "Nhóm ngoại lệ / thông báo" #FDECEC {
-    usecase "Thông báo lỗi không có quyền" as PermissionError
-    usecase "Thông báo trùng lặp" as DuplicateError
-    usecase "Thông báo thiếu ảnh" as MissingImage
-  }
+  usecase "Quản lý Khách sạn" as HotelManage
+  usecase "Kiểm tra quyền Admin" as CheckAdmin
+  usecase "Xóa khách sạn" as DeleteHotel
+  usecase "Kiểm tra khách sạn tồn tại" as CheckHotelExists
+  usecase "Cập nhật khách sạn" as UpdateHotel
+  usecase "Kiểm tra quyền sở hữu\n(Check Owner)" as CheckOwner
+  usecase "Thông báo lỗi không có quyền" as PermissionError
+  usecase "Đăng nhập hệ thống" as LoginSystem
+  usecase "Xem danh sách khách sạn của tôi" as MyHotels
+  usecase "Thêm khách sạn mới" as AddHotel
+  usecase "Kiểm tra trùng tên & địa điểm" as CheckDuplicate
+  usecase "Upload hình ảnh (Cloudinary)" as UploadImage
+  usecase "Thông báo trùng lặp" as DuplicateError
+  usecase "Thông báo thiếu ảnh" as MissingImage
 }
 
-Admin --> AddHotel
-Admin --> UpdateHotel
-Admin --> DeleteHotel
-Admin --> MyHotels
+Admin --> HotelManage
 
-AddHotel -up-|> HotelManage
-UpdateHotel -up-|> HotelManage
 DeleteHotel -up-|> HotelManage
+UpdateHotel -up-|> HotelManage
 MyHotels -up-|> HotelManage
+AddHotel -up-|> HotelManage
 
-AddHotel ..> LoginSystem : <<include>>
-AddHotel ..> CheckAdmin : <<include>>
+HotelManage ..> CheckAdmin : <<include>>
+HotelManage ..> LoginSystem : <<include>>
+
+DeleteHotel ..> CheckHotelExists : <<include>>
+DeleteHotel ..> CheckOwner : <<include>>
+UpdateHotel ..> CheckHotelExists : <<include>>
+UpdateHotel ..> CheckOwner : <<include>>
 AddHotel ..> CheckDuplicate : <<include>>
 AddHotel ..> UploadImage : <<include>>
-UpdateHotel ..> LoginSystem : <<include>>
-UpdateHotel ..> CheckAdmin : <<include>>
-UpdateHotel ..> CheckOwner : <<include>>
-UpdateHotel ..> CheckHotelExists : <<include>>
-UpdateHotel ..> UploadImage : <<include>>
-DeleteHotel ..> LoginSystem : <<include>>
-DeleteHotel ..> CheckAdmin : <<include>>
-DeleteHotel ..> CheckOwner : <<include>>
-DeleteHotel ..> CheckHotelExists : <<include>>
-MyHotels ..> LoginSystem : <<include>>
-MyHotels ..> CheckAdmin : <<include>>
 
-PermissionError .> UpdateHotel : <<extend>>
-PermissionError .> DeleteHotel : <<extend>>
-DuplicateError .> AddHotel : <<extend>>
-MissingImage .> AddHotel : <<extend>>
-MissingImage .> UpdateHotel : <<extend>>
+PermissionError .up.> UpdateHotel : <<extend>>
+PermissionError .up.> DeleteHotel : <<extend>>
+DuplicateError .up.> AddHotel : <<extend>>
+MissingImage .up.> AddHotel : <<extend>>
 @enduml
 ```
 
@@ -1305,73 +1011,42 @@ MissingImage .> UpdateHotel : <<extend>>
 
 #### 3.2.1.8 Usecase tra cứu khách sạn
 
-![image19.png](../images/image-019.png)
 > Hình 3.8: Usecase tra cứu khách sạn
 
 ```plantuml
 @startuml
 !theme plain
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam defaultFontName "Times New Roman"
-skinparam ArrowColor #374151
-skinparam actor {
-  BorderColor #7C2D12
-  FontColor #7C2D12
-}
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #1D4ED8
-  FontColor #111827
-}
 left to right direction
 
 actor "Khách (Guest)" as Guest
 actor "Người dùng (User)" as User
-User -up-|> Guest
+User -down-|> Guest
 
 rectangle "Hệ thống Tra cứu Khách sạn" {
-  package "Nhóm khám phá khách sạn" #E8F3FF {
-    usecase "Khám phá & Tra cứu Khách sạn" as SearchHotel
-    usecase "Xem danh sách tất cả khách sạn" as ViewAllHotels
-  }
-
-  package "Nhóm tra cứu chi tiết" #ECFDF3 {
-    usecase "Xem chi tiết khách sạn" as ViewHotelDetail
-    usecase "Xem danh sách phòng của khách sạn" as ViewHotelRooms
-  }
-
-  package "Nhóm tìm kiếm & kiểm tra" #FFF4E6 {
-    usecase "Tìm kiếm khách sạn" as FindHotel
-    usecase "Tìm khách sạn trong DB" as FindHotelDB
-    usecase "Kiểm tra tính hợp lệ ngày tháng\n(Check-in/Check-out)" as ValidateDate
-  }
-
-  package "Nhóm ngoại lệ / thông báo" #FDECEC {
-    usecase "Thông báo ngày không hợp lệ" as InvalidDate
-    usecase "Thông báo không tìm thấy (404)" as NotFound
-  }
+  usecase "Khám phá & Tra cứu Khách sạn" as SearchHotel
+  usecase "Xem danh sách tất cả khách sạn" as ViewAllHotels
+  usecase "Thông báo ngày không hợp lệ" as InvalidDate
+  usecase "Xem danh sách phòng của khách sạn" as ViewHotelRooms
+  usecase "Tìm khách sạn trong DB" as FindHotelDB
+  usecase "Xem chi tiết khách sạn" as ViewHotelDetail
+  usecase "Thông báo không tìm thấy (404)" as NotFound
+  usecase "Tìm kiếm khách sạn" as FindHotel
+  usecase "Kiểm tra tính hợp lệ ngày tháng\n(Check-in/Check-out)" as ValidateDate
 }
 
-Guest --> ViewAllHotels
-Guest --> ViewHotelDetail
-Guest --> ViewHotelRooms
-Guest --> FindHotel
+Guest --> SearchHotel
 
 ViewAllHotels -up-|> SearchHotel
 ViewHotelRooms -up-|> SearchHotel
 ViewHotelDetail -up-|> SearchHotel
 FindHotel -up-|> SearchHotel
 
-ViewAllHotels ..> FindHotelDB : <<include>>
 ViewHotelRooms ..> FindHotelDB : <<include>>
 ViewHotelDetail ..> FindHotelDB : <<include>>
-FindHotel ..> FindHotelDB : <<include>>
 FindHotel ..> ValidateDate : <<include>>
 
-InvalidDate .> FindHotel : <<extend>>
-NotFound .> ViewHotelDetail : <<extend>>
-NotFound .> ViewHotelRooms : <<extend>>
+InvalidDate .up.> FindHotel : <<extend>>
+NotFound .up.> ViewHotelDetail : <<extend>>
 @enduml
 ```
 
@@ -1437,82 +1112,54 @@ NotFound .> ViewHotelRooms : <<extend>>
 
 #### 3.2.1.9 Usecase quản lý đặt phòng
 
-![image20.png](../images/image-020.png)
 > Hình 3.9: Usecase quản lý đặt phòng
 
 ```plantuml
 @startuml
 !theme plain
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam defaultFontName "Times New Roman"
-skinparam ArrowColor #374151
-skinparam actor {
-  BorderColor #7C2D12
-  FontColor #7C2D12
-}
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #1D4ED8
-  FontColor #111827
-}
 left to right direction
 
 actor "Quản trị viên (Admin)" as Admin
 
 rectangle "Hệ thống Quản lý & Cập nhật trạng thái đặt phòng" {
-  package "Nhóm quản lý booking" #E8F3FF {
-    usecase "Quản lý Đặt phòng" as BookingManage
-    usecase "Xem danh sách tất cả Booking" as ViewAllBookings
-    usecase "Cập nhật trạng thái Booking\n(Check-in / Check-out)" as UpdateBookingStatus
-  }
-
-  package "Nhóm xác thực & phân quyền" #FFF4E6 {
-    usecase "Đăng nhập hệ thống" as LoginSystem
-    usecase "Kiểm tra quyền Admin" as CheckAdmin
-  }
-
-  package "Nhóm xử lý trạng thái phòng" #ECFDF3 {
-    usecase "Gán số phòng (Room Number)" as AssignRoom
-    usecase "Kiểm tra phòng đang có khách" as CheckRoomOccupied
-  }
-
-  package "Nhóm ngoại lệ / thông báo" #FDECEC {
-    usecase "Thông báo phòng đang có người ở" as RoomOccupiedNotice
-    usecase "Thông báo Booking không tồn tại" as BookingNotFound
-  }
+  usecase "Quản lý Đặt phòng" as BookingManage
+  usecase "Kiểm tra quyền Admin" as CheckAdmin
+  usecase "Thông báo phòng đang có người ở" as RoomOccupiedNotice
+  usecase "Thông báo Booking không tồn tại" as BookingNotFound
+  usecase "Đăng nhập hệ thống" as LoginSystem
+  usecase "Xem danh sách tất cả Booking" as ViewAllBookings
+  usecase "Cập nhật trạng thái Booking\n(Check-in / Check-out)" as UpdateBookingStatus
+  usecase "Gán số phòng (Room Number)" as AssignRoom
+  usecase "Kiểm tra phòng đang có khách" as CheckRoomOccupied
 }
 
-Admin --> ViewAllBookings
-Admin --> UpdateBookingStatus
+Admin --> BookingManage
 
 ViewAllBookings -up-|> BookingManage
 UpdateBookingStatus -up-|> BookingManage
 
-ViewAllBookings ..> LoginSystem : <<include>>
-ViewAllBookings ..> CheckAdmin : <<include>>
-UpdateBookingStatus ..> LoginSystem : <<include>>
-UpdateBookingStatus ..> CheckAdmin : <<include>>
+BookingManage ..> CheckAdmin : <<include>>
+BookingManage ..> LoginSystem : <<include>>
 UpdateBookingStatus ..> AssignRoom : <<include>>
 AssignRoom ..> CheckRoomOccupied : <<include>>
 
-RoomOccupiedNotice .> UpdateBookingStatus : <<extend>>
-BookingNotFound .> UpdateBookingStatus : <<extend>>
+RoomOccupiedNotice .up.> UpdateBookingStatus : <<extend>>
+BookingNotFound .up.> UpdateBookingStatus : <<extend>>
 @enduml
 ```
 
 Đặc tả Usecase xem danh sách tất cả Booking
 
-| Mục | Nội dung |
-| --- | --- |
-| Tên Use case | Xem danh sách tất cả Booking |
-| Actor | Quản trị viên (Admin) |
-| Mô tả | Admin truy cập vào hệ thống để xem toàn bộ danh sách các đơn đặt phòng (Booking) nhằm theo dõi tình hình kinh doanh và quản lý. |
-| Pre-conditions | - Actor đã đăng nhập vào hệ thống.<br>- Actor có quyền Admin. |
-| Post-conditions | Success: Hệ thống hiển thị danh sách các Booking với thông tin chi tiết (Khách hàng, Phòng, Ngày, Trạng thái...).<br>Fail: Hệ thống báo lỗi không có quyền truy cập. |
-| Luồng sự kiện chính | 1. Actor chọn chức năng "Quản lý Đặt phòng" trên menu.<br>2. Hệ thống thực hiện kiểm tra quyền Admin.<br>3. Nếu hợp lệ, hệ thống truy vấn dữ liệu các đơn đặt phòng.<br>4. Hệ thống hiển thị danh sách Booking lên giao diện. |
-| Luồng sự kiện phụ | - Nếu Actor không phải Admin: Hệ thống từ chối truy cập và báo lỗi. |
-| <Include Use Case><br>Quy trình Nghiệp vụ | - Kiểm tra quyền Admin: Hệ thống xác minh vai trò của tài khoản hiện tại để đảm bảo tính bảo mật cho module quản lý. |
+| Mục                                       | Nội dung                                                                                                                                                                                                                      |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tên Use case                              | Xem danh sách tất cả Booking                                                                                                                                                                                                  |
+| Actor                                     | Quản trị viên (Admin)                                                                                                                                                                                                         |
+| Mô tả                                     | Admin truy cập vào hệ thống để xem toàn bộ danh sách các đơn đặt phòng (Booking) nhằm theo dõi tình hình kinh doanh và quản lý.                                                                                               |
+| Pre-conditions                            | - Actor đã đăng nhập vào hệ thống.<br>- Actor có quyền Admin.                                                                                                                                                                 |
+| Post-conditions                           | Success: Hệ thống hiển thị danh sách các Booking với thông tin chi tiết (Khách hàng, Phòng, Ngày, Trạng thái...).<br>Fail: Hệ thống báo lỗi không có quyền truy cập.                                                          |
+| Luồng sự kiện chính                       | 1. Actor chọn chức năng "Quản lý Đặt phòng" trên menu.<br>2. Hệ thống thực hiện kiểm tra quyền Admin.<br>3. Nếu hợp lệ, hệ thống truy vấn dữ liệu các đơn đặt phòng.<br>4. Hệ thống hiển thị danh sách Booking lên giao diện. |
+| Luồng sự kiện phụ                         | - Nếu Actor không phải Admin: Hệ thống từ chối truy cập và báo lỗi.                                                                                                                                                           |
+| <Include Use Case><br>Quy trình Nghiệp vụ | - Kiểm tra quyền Admin: Hệ thống xác minh vai trò của tài khoản hiện tại để đảm bảo tính bảo mật cho module quản lý.                                                                                                          |
 
 Đặc tả Usecase cập nhật trạng thái Booking
 
@@ -1531,60 +1178,32 @@ BookingNotFound .> UpdateBookingStatus : <<extend>>
 
 #### 3.2.1.10 Usecase đặt phòng
 
-![image21.png](../images/image-021.png)
 > Hình 3.10: Usecase quản lý đặt phòng
 
 ```plantuml
 @startuml
 !theme plain
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam defaultFontName "Times New Roman"
-skinparam ArrowColor #374151
-skinparam actor {
-  BorderColor #7C2D12
-  FontColor #7C2D12
-}
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #1D4ED8
-  FontColor #111827
-}
 left to right direction
 
 actor "Quản trị viên (Admin)" as Admin
 actor "Khách hàng (Customer)" as Customer
+Admin -right-|> Customer
 
 rectangle "Quy trình Tạo đơn đặt phòng" {
-  package "Nhóm giao dịch đặt phòng" #E8F3FF {
-    usecase "Thực hiện giao dịch Đặt phòng" as BookingTransaction
-    usecase "Tạo Booking mới" as CreateBooking
-  }
-
-  package "Nhóm xác thực" #FFF4E6 {
-    usecase "Đăng nhập hệ thống" as LoginSystem
-  }
-
-  package "Nhóm kiểm tra điều kiện" #ECFDF3 {
-    usecase "Kiểm tra tính hợp lệ ngày đặt" as ValidateBookingDate
-    usecase "Kiểm tra phòng trống (Availability)" as AvailabilityCheck
-    usecase "Kiểm tra số lượng phòng còn lại\n(Capacity Check)" as CapacityCheck
-  }
-
-  package "Nhóm tính toán & sinh mã" #EEF2FF {
-    usecase "Tính tổng giá tiền" as TotalPrice
-    usecase "Sinh mã đặt phòng (Reference Code)" as ReferenceCode
-  }
-
-  package "Nhóm ngoại lệ / thông báo" #FDECEC {
-    usecase "Thông báo ngày không hợp lệ" as InvalidDate
-    usecase "Thông báo phòng đã hết chỗ" as FullRoomNotice
-    usecase "Thông báo phòng không thuộc khách sạn" as RoomHotelNotice
-  }
+  usecase "Thực hiện giao dịch Đặt phòng" as BookingTransaction
+  usecase "Đăng nhập hệ thống" as LoginSystem
+  usecase "Thông báo ngày không hợp lệ" as InvalidDate
+  usecase "Thông báo phòng đã hết chỗ" as FullRoomNotice
+  usecase "Thông báo phòng không thuộc khách sạn" as RoomHotelNotice
+  usecase "Tạo Booking mới" as CreateBooking
+  usecase "Sinh mã đặt phòng (Reference Code)" as ReferenceCode
+  usecase "Tính tổng giá tiền" as TotalPrice
+  usecase "Kiểm tra số lượng phòng còn lại\n(Capacity Check)" as CapacityCheck
+  usecase "Kiểm tra phòng trống (Availability)" as AvailabilityCheck
+  usecase "Kiểm tra tính hợp lệ ngày đặt" as ValidateBookingDate
 }
 
 Customer --> BookingTransaction
-Admin --> BookingTransaction
 
 CreateBooking -up-|> BookingTransaction
 
@@ -1595,9 +1214,9 @@ CreateBooking ..> CapacityCheck : <<include>>
 CreateBooking ..> TotalPrice : <<include>>
 CreateBooking ..> ReferenceCode : <<include>>
 
-InvalidDate .> CreateBooking : <<extend>>
-FullRoomNotice .> CreateBooking : <<extend>>
-RoomHotelNotice .> CreateBooking : <<extend>>
+InvalidDate .up.> CreateBooking : <<extend>>
+FullRoomNotice .up.> CreateBooking : <<extend>>
+RoomHotelNotice .up.> CreateBooking : <<extend>>
 @enduml
 ```
 
@@ -1617,71 +1236,43 @@ RoomHotelNotice .> CreateBooking : <<extend>>
 
 #### 3.2.1.11 Usecase tra cứu và hủy đơn đặt phòng
 
-![image22.png](../images/image-022.png)
 > Hình 3.11: Usecase tra cứu và hủy đơn đặt phòng
 
 ```plantuml
 @startuml
 !theme plain
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam defaultFontName "Times New Roman"
-skinparam ArrowColor #374151
-skinparam actor {
-  BorderColor #7C2D12
-  FontColor #7C2D12
-}
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #1D4ED8
-  FontColor #111827
-}
 left to right direction
 
 actor "Khách hàng (Customer)" as Customer
 actor "Quản trị viên (Admin)" as Admin
 
 rectangle "Hệ thống Quản lý tra cứu và hủy đơn đặt phòng" {
-  package "Nhóm tra cứu booking" #E8F3FF {
-    usecase "Quản lý Tra cứu/Hủy Đơn đặt phòng" as SearchCancelManage
-    usecase "Tra cứu Booking theo mã" as SearchBookingCode
-  }
-
-  package "Nhóm hủy booking" #EEF2FF {
-    usecase "Hủy đặt phòng" as CancelBooking
-  }
-
-  package "Nhóm xác thực & kiểm tra quyền" #FFF4E6 {
-    usecase "Đăng nhập hệ thống" as LoginSystem
-    usecase "Kiểm tra quyền sở hữu đơn\n(User/Admin Check)" as CheckOrderOwner
-    usecase "Kiểm tra trạng thái đơn hàng" as CheckOrderStatus
-    usecase "Ghi nhận lý do hủy" as SaveCancelReason
-  }
-
-  package "Nhóm ngoại lệ / thông báo" #FDECEC {
-    usecase "Thông báo mã không tồn tại" as CodeNotFound
-    usecase "Thông báo không thể hủy\n(Đã Check-out/Đã hủy)" as CannotCancel
-    usecase "Thông báo không có quyền" as PermissionError
-  }
+  usecase "Quản lý Tra cứu/Hủy Đơn đặt phòng" as SearchCancelManage
+  usecase "Đăng nhập hệ thống" as LoginSystem
+  usecase "Thông báo không thể hủy\n(Đã Check-out/Đã hủy)" as CannotCancel
+  usecase "Thông báo không có quyền" as PermissionError
+  usecase "Tra cứu Booking theo mã" as SearchBookingCode
+  usecase "Thông báo mã không tồn tại" as CodeNotFound
+  usecase "Hủy đặt phòng" as CancelBooking
+  usecase "Ghi nhận lý do hủy" as SaveCancelReason
+  usecase "Kiểm tra trạng thái đơn hàng" as CheckOrderStatus
+  usecase "Kiểm tra quyền sở hữu đơn\n(User/Admin Check)" as CheckOrderOwner
 }
 
-Customer --> SearchBookingCode
-Customer --> CancelBooking
-Admin --> SearchBookingCode
-Admin --> CancelBooking
+Customer --> SearchCancelManage
+Admin --> SearchCancelManage
 
 SearchBookingCode -up-|> SearchCancelManage
 CancelBooking -up-|> SearchCancelManage
 
-SearchBookingCode ..> LoginSystem : <<include>>
-CancelBooking ..> LoginSystem : <<include>>
+SearchCancelManage ..> LoginSystem : <<include>>
 CancelBooking ..> CheckOrderOwner : <<include>>
 CancelBooking ..> CheckOrderStatus : <<include>>
 CancelBooking ..> SaveCancelReason : <<include>>
 
-CannotCancel .> CancelBooking : <<extend>>
-PermissionError .> CancelBooking : <<extend>>
-CodeNotFound .> SearchBookingCode : <<extend>>
+CannotCancel .up.> CancelBooking : <<extend>>
+PermissionError .up.> CancelBooking : <<extend>>
+CodeNotFound .up.> SearchBookingCode : <<extend>>
 @enduml
 ```
 
@@ -1716,64 +1307,35 @@ CodeNotFound .> SearchBookingCode : <<extend>>
 
 #### 3.2.1.12 Usecase quản lý tiện ích
 
-![image23.png](../images/image-023.png)
 > Hình 3.12: Usecase quản lý tiện ích
 
 ```plantuml
 @startuml
 !theme plain
-skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam defaultFontName "Times New Roman"
-skinparam ArrowColor #374151
-skinparam actor {
-  BorderColor #7C2D12
-  FontColor #7C2D12
-}
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #1D4ED8
-  FontColor #111827
-}
 left to right direction
 
 actor "Quản trị viên (Admin)" as Admin
 
 rectangle "Hệ thống Quản lý tiện ích" {
-  package "Nhóm CRUD tiện ích hệ thống" #E8F3FF {
-    usecase "Quản lý tiện ích" as AmenityManage
-    usecase "Tạo tiện ích mới" as CreateAmenity
-    usecase "Cập nhật tiện ích" as UpdateAmenity
-    usecase "Xóa tiện ích hệ thống" as DeleteAmenity
-  }
-
-  package "Nhóm gỡ tiện ích khỏi đối tượng" #EEF2FF {
-    usecase "Gỡ tiện ích khỏi Khách sạn" as RemoveFromHotel
-    usecase "Gỡ tiện ích khỏi Phòng" as RemoveFromRoom
-  }
-
-  package "Nhóm xác thực & kiểm tra nghiệp vụ" #FFF4E6 {
-    usecase "Đăng nhập hệ thống" as LoginSystem
-    usecase "Kiểm tra quyền Admin" as CheckAdmin
-    usecase "Kiểm tra quyền sở hữu Hotel" as CheckHotelOwner
-    usecase "Kiểm tra sự tồn tại (ID)" as CheckExists
-    usecase "Kiểm tra đang sử dụng (In Use)" as CheckInUse
-    usecase "Kiểm tra trùng tên" as CheckDuplicateName
-  }
-
-  package "Nhóm ngoại lệ / thông báo" #FDECEC {
-    usecase "Thông báo không có quyền" as PermissionError
-    usecase "Thông báo đang được sử dụng\n(Không thể xóa)" as InUseNotice
-    usecase "Thông báo không tìm thấy" as NotFound
-    usecase "Thông báo lỗi trùng tên" as DuplicateNameNotice
-  }
+  usecase "Quản lý tiện ích" as AmenityManage
+  usecase "Kiểm tra quyền Admin" as CheckAdmin
+  usecase "Đăng nhập hệ thống" as LoginSystem
+  usecase "Gỡ tiện ích khỏi Phòng" as RemoveFromRoom
+  usecase "Kiểm tra quyền sở hữu Hotel" as CheckHotelOwner
+  usecase "Gỡ tiện ích khỏi Khách sạn" as RemoveFromHotel
+  usecase "Thông báo không có quyền" as PermissionError
+  usecase "Xóa tiện ích hệ thống" as DeleteAmenity
+  usecase "Kiểm tra đang sử dụng (In Use)" as CheckInUse
+  usecase "Thông báo đang được sử dụng\n(Không thể xóa)" as InUseNotice
+  usecase "Kiểm tra sự tồn tại (ID)" as CheckExists
+  usecase "Cập nhật tiện ích" as UpdateAmenity
+  usecase "Thông báo không tìm thấy" as NotFound
+  usecase "Kiểm tra trùng tên" as CheckDuplicateName
+  usecase "Tạo tiện ích mới" as CreateAmenity
+  usecase "Thông báo lỗi trùng tên" as DuplicateNameNotice
 }
 
-Admin --> CreateAmenity
-Admin --> UpdateAmenity
-Admin --> DeleteAmenity
-Admin --> RemoveFromHotel
-Admin --> RemoveFromRoom
+Admin --> AmenityManage
 
 CreateAmenity -up-|> AmenityManage
 UpdateAmenity -up-|> AmenityManage
@@ -1781,31 +1343,22 @@ DeleteAmenity -up-|> AmenityManage
 RemoveFromHotel -up-|> AmenityManage
 RemoveFromRoom -up-|> AmenityManage
 
-CreateAmenity ..> LoginSystem : <<include>>
-CreateAmenity ..> CheckAdmin : <<include>>
-CreateAmenity ..> CheckDuplicateName : <<include>>
-UpdateAmenity ..> LoginSystem : <<include>>
-UpdateAmenity ..> CheckAdmin : <<include>>
+AmenityManage ..> CheckAdmin : <<include>>
+AmenityManage ..> LoginSystem : <<include>>
+RemoveFromRoom ..> CheckHotelOwner : <<include>>
+RemoveFromHotel ..> CheckHotelOwner : <<include>>
+DeleteAmenity ..> CheckInUse : <<include>>
+DeleteAmenity ..> CheckExists : <<include>>
 UpdateAmenity ..> CheckExists : <<include>>
 UpdateAmenity ..> CheckDuplicateName : <<include>>
-DeleteAmenity ..> LoginSystem : <<include>>
-DeleteAmenity ..> CheckAdmin : <<include>>
-DeleteAmenity ..> CheckExists : <<include>>
-DeleteAmenity ..> CheckInUse : <<include>>
-RemoveFromHotel ..> LoginSystem : <<include>>
-RemoveFromHotel ..> CheckAdmin : <<include>>
-RemoveFromHotel ..> CheckHotelOwner : <<include>>
-RemoveFromRoom ..> LoginSystem : <<include>>
-RemoveFromRoom ..> CheckAdmin : <<include>>
-RemoveFromRoom ..> CheckHotelOwner : <<include>>
+CreateAmenity ..> CheckDuplicateName : <<include>>
 
-PermissionError .> RemoveFromRoom : <<extend>>
-PermissionError .> RemoveFromHotel : <<extend>>
-InUseNotice .> DeleteAmenity : <<extend>>
-NotFound .> UpdateAmenity : <<extend>>
-NotFound .> DeleteAmenity : <<extend>>
-DuplicateNameNotice .> CreateAmenity : <<extend>>
-DuplicateNameNotice .> UpdateAmenity : <<extend>>
+PermissionError .up.> RemoveFromRoom : <<extend>>
+PermissionError .up.> RemoveFromHotel : <<extend>>
+InUseNotice .up.> DeleteAmenity : <<extend>>
+NotFound .up.> UpdateAmenity : <<extend>>
+DuplicateNameNotice .up.> CreateAmenity : <<extend>>
+DuplicateNameNotice .up.> UpdateAmenity : <<extend>>
 @enduml
 ```
 
@@ -1888,7 +1441,6 @@ DuplicateNameNotice .> UpdateAmenity : <<extend>>
 
 - Sơ đồ tuần tự đăng nhập
 
-![image24.png](../images/image-024.png)
 > Hình 3.13: Sơ đồ tuần tự đăng nhập
 
 ```plantuml
@@ -1931,7 +1483,6 @@ end
 
 - Sơ đồ tuần tự đăng ký
 
-![image25.png](../images/image-025.png)
 > Hình 3.14: Sơ đồ tuần tự đăng ký
 
 ```plantuml
@@ -1976,7 +1527,6 @@ end
 
 - Sơ đồ tuần tự cập nhật thông tin cá nhân
 
-![image26.png](../images/image-026.png)
 > Hình 3.15: Sơ đồ tuần tự cập nhật thông tin cá nhân
 
 ```plantuml
@@ -2013,7 +1563,6 @@ end
 
 - Sơ đồ tuần tự đổi mật khẩu
 
-![image27.png](../images/image-027.png)
 > Hình 3.16: Sơ đồ tuần tự đổi mật khẩu
 
 ```plantuml
@@ -2059,7 +1608,6 @@ end
 
 - Sơ đồ tuần tự xem thông tin profile
 
-![image28.png](../images/image-028.png)
 > Hình 3.17: Sơ đồ tuần tự xem thông tin profile
 
 ```plantuml
@@ -2094,7 +1642,6 @@ end
 
 - Sơ đồ tuần tự xóa tài khoản cá nhân
 
-![image29.png](../images/image-029.png)
 > Hình 3.18: Sơ đồ tuần tự xóa tài khoản cá nhân
 
 ```plantuml
@@ -2134,7 +1681,6 @@ end
 
 - Sơ đồ tuần tự xem lịch sử đặt phòng
 
-![image30.png](../images/image-030.png)
 > Hình 3.19: Sơ đồ tuần tự xem lịch sử đặt phòng
 
 ```plantuml
@@ -2169,7 +1715,6 @@ end
 
 - Sơ đồ tuần tự xem danh sách người dùng
 
-![image31.png](../images/image-031.png)
 > Hình 3.20: Sơ đồ tuần tự xem danh sách người dùng
 
 ```plantuml
@@ -2205,7 +1750,6 @@ end
 
 - Sơ đồ tuần tự khóa tài khoản người dùng
 
-![image32.png](../images/image-032.png)
 > Hình 3.21: Sơ đồ tuần tự khóa tài khoản người dùng
 
 ```plantuml
@@ -2242,7 +1786,6 @@ end
 
 - Sơ đồ tuần tự mở khóa tài khoản người dùng
 
-![image33.png](../images/image-033.png)
 > Hình 3.22: Sơ đồ tuần tự mở khóa tài khoản người dùng
 
 ```plantuml
@@ -2278,7 +1821,6 @@ end
 
 - Sơ đồ tuần tự thêm phòng mới
 
-![image34.png](../images/image-034.png)
 > Hình 3.23: Sơ đồ tuần tự thêm phòng mới
 
 ```plantuml
@@ -2323,7 +1865,6 @@ end
 
 - Sơ đồ tuần tự cập nhật thông tin phòng
 
-![image35.png](../images/image-035.png)
 > Hình 3.24: Sơ đồ tuần tự cập nhật thông tin phòng
 
 ```plantuml
@@ -2371,7 +1912,6 @@ end
 
 - Sơ đồ tuần tự xóa phòng
 
-![image36.png](../images/image-036.png)
 > Hình 3.25: Sơ đồ tuần tự xóa phòng
 
 ```plantuml
@@ -2409,7 +1949,6 @@ end
 
 - Sơ đồ tuần tự xem danh sách tất cả phòng
 
-![image37.png](../images/image-037.png)
 > Hình 3.26: Sơ đồ tuần tự xem danh sách tất cả phòng
 
 ```plantuml
@@ -2443,7 +1982,6 @@ end
 
 - Sơ đồ tuần tự tìm phòng trống theo ngày
 
-![image38.png](../images/image-038.png)
 > Hình 3.27: Sơ đồ tuần tự tìm phòng trống theo ngày
 
 ```plantuml
@@ -2479,7 +2017,6 @@ end
 
 - Sơ đồ tuần tự xem chi tiết phòng
 
-![image39.png](../images/image-039.png)
 > Hình 3.28: Sơ đồ tuần tự xem chi tiết phòng
 
 ```plantuml
@@ -2515,7 +2052,6 @@ end
 
 - Sơ đồ tuần tự tìm kiếm phòng
 
-![image40.png](../images/image-040.png)
 > Hình 3.29: Sơ đồ tuần tự tìm kiếm phòng theo từ khóa
 
 ```plantuml
@@ -2550,7 +2086,6 @@ end
 
 - Sơ đồ tuần tự xem loại phòng
 
-![image41.png](../images/image-041.png)
 > Hình 3.30: Sơ đồ tuần tự xem loại phòng
 
 ```plantuml
@@ -2584,7 +2119,6 @@ end
 
 - Sơ đồ tuần tự thêm khách sạn mới
 
-![image42.png](../images/image-042.png)
 > Hình 3.31: Sơ đồ tuần tự thêm khách sạn mới
 
 ```plantuml
@@ -2631,7 +2165,6 @@ end
 
 - Sơ đồ tuần tự cập nhật khách sạn
 
-![image43.png](../images/image-043.png)
 > Hình 3.32: Sơ đồ tuần tự cập nhật khách sạn
 
 ```plantuml
@@ -2674,7 +2207,6 @@ end
 
 - Sơ đồ tuần tự xóa khách sạn
 
-![image44.png](../images/image-044.png)
 > Hình 3.33: Sơ đồ tuần tự xóa khách sạn
 
 ```plantuml
@@ -2718,7 +2250,6 @@ end
 
 - Sơ đồ tuần tự xem danh sách khách sạn của tôi
 
-![image45.png](../images/image-045.png)
 > Hình 3.34: Sơ đồ tuần tự xem danh sách khách sạn của tôi
 
 ```plantuml
@@ -2761,7 +2292,6 @@ end
 
 - Sơ đồ tuần tự xem danh sách tất cả khách sạn
 
-![image46.png](../images/image-046.png)
 > Hình 3.35: Sơ đồ tuần tự xem danh sách tất cả khách sạn
 
 ```plantuml
@@ -2796,7 +2326,6 @@ end
 
 - Sơ đồ tuần tự xem chi tiết khách sạn
 
-![image47.png](../images/image-047.png)
 > Hình 3.36: Sơ đồ tuần tự xem chi tiết khách sạn
 
 ```plantuml
@@ -2833,7 +2362,6 @@ end
 
 - Sơ đồ tuần tự tìm kiếm khách sạn
 
-![image48.png](../images/image-048.png)
 > Hình 3.37: Sơ đồ tuần tự tìm kiếm khách sạn
 
 ```plantuml
@@ -2870,7 +2398,6 @@ end
 
 - Sơ đồ tuần tự xem danh sách phòng của khách sạn
 
-![image49.png](../images/image-049.png)
 > Hình 3.38: Sơ đồ tuần tự xem danh sách phòng của khách sạn
 
 ```plantuml
@@ -2907,7 +2434,6 @@ end
 
 - Sơ đồ tuần tự xem danh sách tất cả booking
 
-![image50.png](../images/image-050.png)
 > Hình 3.39: Sơ đồ tuần tự xem danh sách tất cả booking
 
 ```plantuml
@@ -2943,7 +2469,6 @@ end
 
 - Sơ đồ tuần tự cập nhật trạng thái booking
 
-![image51.png](../images/image-051.png)
 > Hình 3.40: Sơ đồ tuần tự cập nhật trạng thái booking
 
 ```plantuml
@@ -2990,7 +2515,6 @@ end
 
 - Sơ đồ tuần tự tạo booking mới
 
-![image52.png](../images/image-052.png)
 > Hình 3.41: Sơ đồ tuần tự tạo booking mới
 
 ```plantuml
@@ -3045,7 +2569,6 @@ end
 
 - Sơ đồ tuần tự tra cứu booking theo mã
 
-![image53.png](../images/image-053.png)
 > Hình 3.42: Sơ đồ tuần tự tra cứu booking theo mã
 
 ```plantuml
@@ -3082,7 +2605,6 @@ end
 
 - Sơ đồ tuần tự hủy đặt phòng
 
-![image54.png](../images/image-054.png)
 > Hình 3.43: Sơ đồ tuần tự hủy đặt phòng
 
 ```plantuml
@@ -3129,7 +2651,6 @@ end
 
 - Sơ đồ tuần tự tạo tiện ích mới
 
-![image55.png](../images/image-055.png)
 > Hình 3.44: Sơ đồ tuần tự tạo tiện ích mới
 
 ```plantuml
@@ -3167,7 +2688,6 @@ end
 
 - Sơ đồ tuần tự cập nhật tiện ích
 
-![image56.png](../images/image-056.png)
 > Hình 3.45: Sơ đồ tuần tự cập nhật tiện ích
 
 ```plantuml
@@ -3213,7 +2733,6 @@ end
 
 - Sơ đồ tuần tự xóa tiện ích hệ thống
 
-![image57.png](../images/image-057.png)
 > Hình 3.46: Sơ đồ tuần tự xóa tiện ích hệ thống
 
 ```plantuml
@@ -3260,7 +2779,6 @@ end
 
 - Sơ đồ tuần tự gỡ tiện ích khỏi khách sạn
 
-![image58.png](../images/image-058.png)
 > Hình 3.47: Sơ đồ tuần tự gỡ tiện ích khỏi khách sạn
 
 ```plantuml
@@ -3304,7 +2822,6 @@ end
 
 - Sơ đồ tuần tự gỡ tiện ích khỏi phòng
 
-![image59.png](../images/image-059.png)
 > Hình 3.48: Sơ đồ tuần tự gỡ tiện ích khỏi phòng
 
 ```plantuml
@@ -3357,7 +2874,6 @@ end
 
 - Sơ đồ hoạt động đăng nhập
 
-![image60.png](../images/image-060.png)
 > Hình 3.49: Sơ đồ hoạt động đăng nhập
 
 ```plantuml
@@ -3416,7 +2932,6 @@ repeat while (Yêu cầu nhập lại?) is ([Yêu cầu nhập lại])
 
 - Sơ đồ hoạt động đăng ký
 
-![image61.png](../images/image-061.png)
 > Hình 3.50: Sơ đồ hoạt động đăng ký tài khoản
 
 ```plantuml
@@ -3469,7 +2984,6 @@ repeat while (Yêu cầu nhập lại?) is ([Yêu cầu nhập lại])
 
 - Sơ đồ hoạt động cập nhật thông tin cá nhân
 
-![image62.png](../images/image-062.png)
 > Hình 3.51: Sơ đồ hoạt động cập nhật thông tin cá nhân
 
 ```plantuml
@@ -3514,7 +3028,6 @@ repeat while (Yêu cầu nhập lại?) is ([Yêu cầu nhập lại])
 
 - Sơ đồ hoạt động đổi mật khẩu
 
-![image63.png](../images/image-063.png)
 > Hình 3.52: Sơ đồ hoạt động đổi mật khẩu
 
 ```plantuml
@@ -3566,7 +3079,6 @@ repeat while (Yêu cầu nhập lại?) is ([Yêu cầu nhập lại])
 
 - Sơ đồ hoạt động xem thông tin Profile
 
-![image64.png](../images/image-064.png)
 > Hình 3.53: Sơ đồ hoạt động xem thông tin profile
 
 ```plantuml
@@ -3598,7 +3110,6 @@ endif
 
 - Sơ đồ hoạt động xóa tài khoản cá nhân
 
-![image65.png](../images/image-065.png)
 > Hình 3.54: Sơ đồ hoạt động xóa tài khoản cá nhân
 
 ```plantuml
@@ -3640,7 +3151,6 @@ endif
 
 - Sơ đồ hoạt động xem lịch sử đặt phòng
 
-![image66.png](../images/image-066.png)
 > Hình 3.55: Sơ đồ hoạt động xem lịch sử đặt phòng
 
 ```plantuml
@@ -3674,7 +3184,6 @@ endif
 
 - Sơ đồ hoạt động xem danh sách người dùng
 
-![image67.png](../images/image-067.png)
 > Hình 3.56: Sơ đồ hoạt động xem danh sách người dùng
 
 ```plantuml
@@ -3709,7 +3218,6 @@ endif
 
 - Sơ đồ hoạt động khóa tài khoản người dùng
 
-![image68.png](../images/image-068.png)
 > Hình 3.57: Sơ đồ hoạt động khóa tài khoản người dùng
 
 ```plantuml
@@ -3743,7 +3251,6 @@ endif
 
 - Sơ đồ hoạt động mở khóa tài khoản người dùng
 
-![image69.png](../images/image-069.png)
 > Hình 3.58: Sơ đồ hoạt động mở khóa tài khoản người dùng
 
 ```plantuml
@@ -3777,7 +3284,6 @@ endif
 
 - Sơ đồ hoạt động thêm phòng mới
 
-![image70.png](../images/image-070.png)
 > Hình 3.59: Sơ đồ hoạt động thêm phòng mới
 
 ```plantuml
@@ -3838,7 +3344,6 @@ endif
 
 - Sơ đồ hoạt động cập nhật thông tin phòng
 
-![image71.png](../images/image-071.png)
 > Hình 3.60: Sơ đồ hoạt động cập nhật thông tin phòng
 
 ```plantuml
@@ -3892,7 +3397,6 @@ endif
 
 - Sơ đồ hoạt động xóa phòng
 
-![image72.png](../images/image-072.png)
 > Hình 3.61: Sơ đồ hoạt động xóa phòng
 
 ```plantuml
@@ -3934,7 +3438,6 @@ endif
 
 - Sơ đồ hoạt động xem danh sách tất cả phòng
 
-![image73.png](../images/image-073.png)
 > Hình 3.62: Sơ đồ hoạt động xem danh sách tất cả phòng
 
 ```plantuml
@@ -3966,7 +3469,6 @@ endif
 
 - Sơ đồ hoạt động tìm phòng trống theo ngày
 
-![image74.png](../images/image-074.png)
 > Hình 3.63: Sơ đồ hoạt động tìm phòng trống theo ngày
 
 ```plantuml
@@ -4014,7 +3516,6 @@ stop
 
 - Sơ đồ hoạt động xem chi tiết phòng
 
-![image75.png](../images/image-075.png)
 > Hình 3.64: Sơ đồ hoạt động xem chi tiết phòng
 
 ```plantuml
@@ -4044,7 +3545,6 @@ endif
 
 - Sơ đồ hoạt động tìm kiếm phòng
 
-![image76.png](../images/image-076.png)
 > Hình 3.65: Sơ đồ hoạt động tìm kiếm phòng
 
 ```plantuml
@@ -4073,7 +3573,6 @@ endif
 
 - Sơ đồ hoạt động xem loại phòng
 
-![image77.png](../images/image-077.png)
 > Hình 3.66: Sơ đồ hoạt động xem loại phòng
 
 ```plantuml
@@ -4101,7 +3600,6 @@ endif
 
 - Sơ đồ hoạt động thêm khách sạn mới
 
-![image78.png](../images/image-078.png)
 > Hình 3.67: Sơ đồ hoạt động thêm khách sạn mới
 
 ```plantuml
@@ -4152,7 +3650,6 @@ stop
 
 - Sơ đồ hoạt động cập nhật khách sạn
 
-![image79.png](../images/image-079.png)
 > Hình 3.68: Sơ đồ hoạt động cập nhật khách sạn
 
 ```plantuml
@@ -4194,7 +3691,6 @@ endif
 
 - Sơ đồ hoạt động xóa khách sạn
 
-![image80.png](../images/image-080.png)
 > Hình 3.69: Sơ đồ hoạt động xóa khách sạn
 
 ```plantuml
@@ -4238,7 +3734,6 @@ endif
 
 - Sơ đồ hoạt động xem danh sách khách sạn của tôi
 
-![image81.png](../images/image-081.png)
 > Hình 3.70: Sơ đồ hoạt động xem danh sách khách sạn của tôi
 
 ```plantuml
@@ -4272,7 +3767,6 @@ endif
 
 - Sơ đồ hoạt động xem danh sách tất cả khách sạn
 
-![image82.png](../images/image-082.png)
 > Hình 3.71: Sơ đồ hoạt động danh sách tất cả khách sạn
 
 ```plantuml
@@ -4300,7 +3794,6 @@ endif
 
 - Sơ đồ hoạt động xem chi tiết khách sạn
 
-![image83.png](../images/image-083.png)
 > Hình 3.72: Sơ đồ hoạt động xem chi tiết khách sạn
 
 ```plantuml
@@ -4330,7 +3823,6 @@ endif
 
 - Sơ đồ hoạt động tìm kiếm khách sạn
 
-![image84.png](../images/image-084.png)
 > Hình 3.73: Sơ đồ hoạt động tìm kiếm khách sạn
 
 ```plantuml
@@ -4373,7 +3865,6 @@ endif
 
 - Sơ đồ hoạt động xem danh sách phòng của khách sạn
 
-![image85.png](../images/image-085.png)
 > Hình 3.74: Sơ đồ hoạt động xem danh sách phòng của khách sạn
 
 ```plantuml
@@ -4408,7 +3899,6 @@ endif
 
 - Sơ đồ hoạt động xem danh sách tất cả Booking
 
-![image86.png](../images/image-086.png)
 > Hình 3.75: Sơ đồ hoạt động xem danh sách tất cả Booking
 
 ```plantuml
@@ -4438,7 +3928,6 @@ endif
 
 - Sơ đồ hoạt động cập nhật trạng thái Booking
 
-![image87.png](../images/image-087.png)
 > Hình 3.76: Sơ đồ hoạt động cập nhật trạng thái booking
 
 ```plantuml
@@ -4484,7 +3973,6 @@ endif
 
 - Sơ đồ hoạt động tạo Booking mới
 
-![image88.png](../images/image-088.png)
 > Hình 3.77: Sơ đồ hoạt động tạo booking mới
 
 ```plantuml
@@ -4533,7 +4021,6 @@ stop
 
 - Sơ đồ hoạt động tra cứu Booking theo mã
 
-![image89.png](../images/image-089.png)
 > Hình 3.78: Sơ đồ hoạt động tra cứu booking theo mã
 
 ```plantuml
@@ -4568,7 +4055,6 @@ repeat while (Tìm thấy đơn hàng?) is ([False]) not ([True])
 
 - Sơ đồ hoạt động hủy đặt phòng
 
-![image90.png](../images/image-090.png)
 > Hình 3.79: Sơ đồ hoạt động hủy đặt phòng
 
 ```plantuml
@@ -4610,7 +4096,6 @@ endif
 
 - Sơ đồ hoạt động tạo tiện ích mới
 
-![image91.png](../images/image-091.png)
 > Hình 3.80: Sơ đồ hoạt động tạo tiện ích mới
 
 ```plantuml
@@ -4665,7 +4150,6 @@ stop
 
 - Sơ đồ hoạt động cập nhật tiện ích
 
-![image92.png](../images/image-092.png)
 > Hình 3.81: Sơ đồ hoạt động cập nhật tiện ích
 
 ```plantuml
@@ -4715,7 +4199,6 @@ stop
 
 - Sơ đồ hoạt động xóa tiện ích hệ thống
 
-![image93.png](../images/image-093.png)
 > Hình 3.82: Sơ đồ hoạt động xóa tiện ích hệ thống
 
 ```plantuml
@@ -4761,7 +4244,6 @@ endif
 
 - Sơ đồ hoạt động gỡ tiện ích khỏi Khách sạn
 
-![image94.png](../images/image-094.png)
 > Hình 3.83: Sơ đồ hoạt động gỡ tiện ích khỏi khách sạn
 
 ```plantuml
@@ -4802,7 +4284,6 @@ endif
 
 - Sơ đồ hoạt động gỡ tiện ích khỏi Phòng
 
-![image95.png](../images/image-095.png)
 > Hình 3.84: Sơ đồ hoạt động gỡ tiện ích khỏi phòng
 
 ```plantuml
@@ -4845,150 +4326,176 @@ endif
 
 - Giao diện đăng nhập
 
-![image96.png](../images/image-096.png)
 > Hình 3.85: Giao diện đăng nhập
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-096.png]]
 
 - Giao diện đăng ký
 
-![image97.png](../images/image-097.png)
 > Hình 3.86: Giao diện đăng ký
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-097.png]]
 
 - Giao diện trang chủ
 
-![image98.png](../images/image-098.png)
 > Hình 3.87: Giao diện trang chủ
 
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-098.png]]
 - Giao diện xem tất cả khách sạn
 
-![image99.png](../images/image-099.png)
 > Hình 3.88: Giao diện xem tất cả khách sạn
 
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-099.png]]
 - Giao diện xem chi tiết khách sạn
 
-![image100.png](../images/image-100.png)
 > Hình 3.89: Giao diện xem chi tiết khách sạn
 
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-100.png]]
 - Giao diện xem phòng của một khách sạn
 
-![image101.png](../images/image-101.png)
 > Hình 3.90: Giao diện xem phòng của một khách sạn
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-101.png]]
 
 - Giao diện xem chi tiết thông tin phòng và form đặt phòng
 
-![image102.png](../images/image-102.png)
 > Hình 3.91: Giao diện xem chi tiết thông tin phòng và form đặt phòng
 
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-102.png]]
 - Giao diện đặt phòng thành công
 
-![image103.png](../images/image-103.png)
 > Hình 3.92: Giao diện đặt phòng thành công
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-103.png]]
 
 - Giao diện lịch sử đặt phòng và tìm kiếm
 
-![image104.png](../images/image-104.png)
 > Hình 3.93: Giao diện lịch sử đặt phòng và tìm kiếm
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-104.png]]
 
 - Giao xem chi tiết thông tin đặt phòng
 
-![image105.png](../images/image-105.png)
 > Hình 3.94: Giao xem chi tiết thông tin đặt phòng
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-105.png]]
 
 - Giao diện khi chọn hủy đặt phòng:
 
-![image106.png](../images/image-106.png)
 > Hình 3.95: Giao diện khi chọn hủy đặt phòng
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-106.png]]
 
 - Giao diện thông tin cá nhân (thông tin cá nhân và thay đổi mật khẩu)
 
-![image107.png](../images/image-107.png)
 > Hình 3.96: Giao diện thông tin cá nhân
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-107.png]]
 
 - Giao diện chính trang quản trị (Quản trị viên)
 
-![image108.png](../images/image-108.png)
 > Hình 3.97: Giao diện chính trang quản trị
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-108.png]]
 
 - Giao diện quản lý tài khoản (Quản trị viên)
 
-![image109.png](../images/image-109.png)
 > Hình 3.98: Giao diện quản lý tài khoản
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-109.png]]
 
 - Giao diện quản lý khách sạn (Quản trị viên)
 
-![image110.png](../images/image-110.png)
 > Hình 3.99: Giao diện quản lý khách sạn
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-110.png]]
 
 - Giao diện khi nhấn vào “Quản lý” của một khách sạn cụ thể
 
-![image111.png](../images/image-111.png)
 > Hình 3.100: Giao diện khi nhấn vào “Quản lý” của một khách sạn cụ thể
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-111.png]]
 
 - Giao diện quản lý phòng của một khách sạn
 
-![image112.png](../images/image-112.png)
 > Hình 3.101: Giao diện quản lý phòng của một khách sạn
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-112.png]]
 
 - Giao diện thêm một phòng mới cho khách sạn hiện tại
 
-![image113.png](../images/image-113.png)
 > Hình 3.102: Giao diện thêm một phòng mới cho khách sạn hiện tại
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-113.png]]
 
 - Giao diện chỉnh sửa phòng
 
-![image114.png](../images/image-114.png)
 > Hình 3.103: Giao diện chỉnh sửa phòng
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-114.png]]
 
 - Giao diện xác nhận khi xóa một phòng
 
-![image115.png](../images/image-115.png)
 > Hình 3.104: Giao diện xác nhận khi xóa một phòng
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-115.png]]
 
 - Giao diện thêm mới một khách sạn (Quản trị viên)
 
-![image116.png](../images/image-116.png)
 > Hình 3.105: Giao diện thêm mới một khách sạn
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-116.png]]
 
 - Giao diện chỉnh sửa một khách sạn (Quản trị viên)
 
-![image117.png](../images/image-117.png)
 > Hình 3.106: Giao diện chỉnh sửa một khách sạn
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-117.png]]
 
 - Giao diện xác nhận trước khi xóa một khách sạn (Quản trị viên)
 
-![image118.png](../images/image-118.png)
 > Hình 3.107: Giao diện xác nhận trước khi xóa một khách sạn
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-118.png]]
 
 - Giao diện quản lý và tìm kiếm đặt phòng (Quản trị viên)
 
-![image119.png](../images/image-119.png)
 > Hình 3.108: Giao diện quản lý và tìm kiếm đặt phòng
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-119.png]]
 
 - Giao diện chuyển đổi trạng thái nhận từ “đã đặt” thành “đã nhận phòng”
 
-![image120.png](../images/image-120.png)
 > Hình 3.109: Giao diện chuyển đổi trạng thái nhận từ “đã đặt” thành “đã nhận phòng”
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-120.png]]
 
 - Giao diện quản lý tiện nghi (Quản trị viên)
 
-![image121.png](../images/image-121.png)
 > Hình 3.110: Giao diện quản lý tiện nghi
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-121.png]]
 
 - Giao diện thêm mới một tiện nghi (Quản trị viên)
 
-![image122.png](../images/image-122.png)
 > Hình 3.111: Giao diện thêm mới một tiện nghi
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-122.png]]
 
 - Giao diện chỉnh sửa một tiên nghi
 
-![image123.png](../images/image-123.png)
 > Hình 3.112: Giao diện chỉnh sửa một tiên nghi
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-123.png]]
 
 - Giao diện xác nhận xóa một tiện nghi
 
-![image124.png](../images/image-124.png)
 > Hình 3.113: Giao diện xác nhận xóa một tiện nghi
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-124.png]]
 
 - Giao diện xem tất cả tiện nghi các cấp của một khách sạn
 
-![image125.png](../images/image-125.png)
 > Hình 3.113: Giao diện xem tất cả tiện nghi các cấp của một khách sạn
+
+![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-125.png]]

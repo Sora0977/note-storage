@@ -6,7 +6,6 @@
       {
         "id": "0aea57e3bda11b7c",
         "type": "tabs",
-        "dimension": 49.41747572815534,
         "children": [
           {
             "id": "b36f3fac6540ee7b",
@@ -21,26 +20,15 @@
               "icon": "lucide-file",
               "title": "chuong-3-thiet-ke"
             }
-          }
-        ]
-      },
-      {
-        "id": "7449f35092b1b972",
-        "type": "tabs",
-        "dimension": 50.58252427184466,
-        "children": [
+          },
           {
-            "id": "b9e959ef345c937b",
+            "id": "2a5c3f14c505c74d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Daily.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Daily"
+              "title": "New tab"
             }
           }
         ]
@@ -100,8 +88,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 304.5110321044922,
-    "collapsed": true
+    "width": 304.5110321044922
   },
   "right": {
     "id": "01d2952e0fd07782",
@@ -219,17 +206,23 @@
   },
   "active": "0c6102da16e07152",
   "lastOpenFiles": [
-    "Daily.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/chuong-4-ket-luan.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-009.png",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-010.png",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-095.png",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-096.png",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-094.png",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-097.png",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-093.png",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-091.png",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-088.png",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-086.png",
     "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/chuong-3-thiet-ke.md",
     "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/chuong-2-phuong-phap-thuc-hien.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/chuong-4-ket-luan.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/README.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-005.png",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-004.png",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-003.png",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-002.png",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-001.png",
     "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/chuong-1-gioi-thieu.md",
+    "Daily.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat.md",
+    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/README.md",
     "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1",
     "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/apply_remaining.js",
     "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters 1/check_diagrams.js",
@@ -249,14 +242,8 @@
     "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/chapters 1/chuong-1-gioi-thieu.md",
     "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/chapters 1",
     "format_chapters_markdown.py",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat.md",
     "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters/README.md",
     "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/chapters",
-    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-125.png",
-    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-124.png",
-    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-123.png",
-    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-122.png",
-    "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images/image-121.png",
     "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup/images",
     "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_backup",
     "ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat.md",

@@ -45,11 +45,17 @@ Install software for tablet
 sửa máy in tem ở dưới nhà máy 
 
 
+sửa máy in tem ở dưới nhà máy 
+Fix printer dưới nhà máy 
+Install software for tablet 
+Cài máy in cho user 
+
 
 3.13 ->3.34 ->  3.48
 
 Flow
 3.49 ->3.63 -> 3.84
 
-- Error
-	- 
+- Error 3.3 vẽ thiếu  Usecase quản lý thông tin cá nhân
+
+
