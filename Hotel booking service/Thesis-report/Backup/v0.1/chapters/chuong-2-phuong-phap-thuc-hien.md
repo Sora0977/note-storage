@@ -146,8 +146,6 @@ Java có nhiều đặc điểm nổi bật, bao gồm:
 
 - Ngoài ra, người dùng có thể thực hiện Đổi mật khẩu. Quy trình này yêu cầu người dùng phải nhập đúng mật khẩu cũ. Hệ thống cũng kiểm tra để đảm bảo mật khẩu mới không được trùng với mật khẩu cũ trước khi thực hiện mã hóa và cập nhật vào cơ sở dữ liệu.
 
-> Hình 2.1: Quy trình đăng nhập và đăng ký.
-
 ```plantuml
 @startdot
 digraph Hinh_2_1 {
@@ -197,13 +195,14 @@ digraph Hinh_2_1 {
 @enddot
 ```
 
+> Hình 2.1: Quy trình đăng nhập và đăng ký.
+
+
 #### 2.3.1.2 Quy trình Quản lý Khách sạn và Phòng (Dành cho Admin)
 
 - Quy trình này dành riêng cho tài khoản có quyền Admin. Đầu tiên là Tạo mới Khách sạn, Admin nhập các thông tin như tên, địa chỉ, mô tả, số sao và tải lên hình ảnh. Hệ thống tích hợp với Cloudinary để lưu trữ ảnh và lấy về URL lưu vào cơ sở dữ liệu. Hệ thống cũng kiểm tra tên và địa điểm khách sạn để ngăn chặn việc tạo trùng lặp.
 
 - Sau khi có khách sạn, Admin tiến hành Thêm phòng . Một phòng sẽ được gắn liền với một khách sạn cụ thể do Admin quản lý. Admin thiết lập loại phòng (Single, Double, Suit, Triple), giá tiền, sức chứa và số lượng phòng có sẵn. Tương tự như khách sạn, hình ảnh phòng cũng được upload lên Cloud và liên kết với phòng đó. Đồng thời, Admin có thể gán các tiện ích cho phòng hoặc khách sạn từ danh sách tiện ích chung của hệ thống.
-
-> Hình 2.2: Quy trình quản lý khách sạn và phòng
 
 ```plantuml
 @startdot
@@ -247,11 +246,12 @@ digraph Hinh_2_2 {
 @enddot
 ```
 
+> Hình 2.2: Quy trình quản lý khách sạn và phòng
+
+
 #### 2.3.1.3 Quy trình Tìm kiếm và Kiểm tra Phòng Trống
 
 Đây là nghiệp vụ quan trọng để đảm bảo khách hàng luôn tìm được phòng thực tế có sẵn. Khi người dùng tìm kiếm theo địa điểm và khoảng thời gian (Check-in/Check-out), hệ thống thực hiện truy vấn phức tạp để loại trừ các phòng đã kín chỗ. Logic hoạt động là tìm tất cả các phòng thuộc khách sạn ở địa điểm đó, sau đó loại bỏ những phòng đã nằm trong các đơn đặt phòng (Booking) có trạng thái là BOOKED hoặc CHECKED_IN mà khoảng thời gian lưu trú giao nhau với khoảng thời gian khách đang tìm. Chỉ những phòng thỏa mãn điều kiện về thời gian và sức chứa mới được trả về kết quả tìm kiếm.
-
-> Hình 2.3: Quy trình tìm kiếm và kiểm tra phòng trống
 
 ```plantuml
 @startdot
@@ -295,13 +295,14 @@ digraph Hinh_2_3 {
 @enddot
 ```
 
+> Hình 2.3: Quy trình tìm kiếm và kiểm tra phòng trống
+
+
 #### 2.3.1.4 Quy trình Đặt phòng
 
 - Quy trình đặt phòng diễn ra qua nhiều bước kiểm tra nghiêm ngặt. Khi khách hàng gửi yêu cầu đặt phòng, hệ thống đầu tiên sẽ xác thực tính hợp lệ của ngày tháng (ngày Check-in không được là quá khứ, ngày Check-out phải sau ngày Check-in). Tiếp theo, hệ thống kiểm tra lại một lần nữa số lượng phòng trống thực tế trong khoảng thời gian đó. Nếu tổng số phòng đã đặt cộng với số phòng khách muốn đặt vượt quá tổng số lượng phòng hiện có của khách sạn, yêu cầu sẽ bị từ chối.
 
 - Nếu phòng có sẵn, hệ thống sẽ tính toán tổng giá tiền bằng cách nhân giá phòng với số đêm lưu trú. Một mã đặt phòng duy nhất gồm 10 ký tự sẽ được sinh ra ngẫu nhiên. Đơn đặt phòng sau đó được lưu vào cơ sở dữ liệu với trạng thái ban đầu là BOOKED.
-
-> Hình 2.4: Quy trình đặt phòng
 
 ```plantuml
 @startdot
@@ -345,13 +346,14 @@ digraph Hinh_2_4 {
 @enddot
 ```
 
+> Hình 2.4: Quy trình đặt phòng
+
+
 #### 2.3.1.5 Quy trình Vận hành
 
 - Sau khi đơn đặt phòng được tạo, quy trình vận hành cho phép cập nhật trạng thái. Khi khách đến nhận phòng, Admin hoặc lễ tân sẽ cập nhật trạng thái đơn sang CHECKED_IN. Tại bước này, hệ thống cho phép gán số phòng cụ thể (ví dụ: phòng 301) cho khách. Hệ thống có logic kiểm tra để đảm bảo số phòng này chưa bị gán cho một khách đang lưu trú khác.
 
 - Đối với việc Hủy phòng, người dùng hoặc Admin có thể thực hiện. Tuy nhiên, hệ thống chặn việc hủy đối với các đơn đã hoàn thành (CHECKED_OUT) hoặc đã bị hủy trước đó. Chỉ người dùng tạo đơn (chính chủ) hoặc Admin mới có quyền thực hiện thao tác này.
-
-> Hình 2.5: Quy trình vận hành
 
 ```plantuml
 @startdot
@@ -398,9 +400,10 @@ digraph Hinh_2_5 {
 @enddot
 ```
 
-### 2.3.2 Sơ đồ chức năng
+> Hình 2.5: Quy trình vận hành
 
-> Hình 2.6: Sơ đồ chức năng của khách hàng
+
+### 2.3.2 Sơ đồ chức năng
 
 ```plantuml
 @startwbs
@@ -437,7 +440,8 @@ skinparam defaultTextAlignment center
 @endwbs
 ```
 
-> Hình 2.7: Sơ đồ chức năng của quản trị viên
+> Hình 2.6: Sơ đồ chức năng của khách hàng
+
 
 ```plantuml
 @startwbs
@@ -478,9 +482,10 @@ skinparam defaultTextAlignment center
 @endwbs
 ```
 
-### 2.3.3 Sơ đồ Use case tổng quát
+> Hình 2.7: Sơ đồ chức năng của quản trị viên
 
-> Hình 2.8: Sơ đồ Usecase tổng quát
+
+### 2.3.3 Sơ đồ Use case tổng quát
 
 ```plantuml
 @startuml
@@ -514,3 +519,6 @@ rectangle "HOTEL BOOKING" {
 }
 @enduml
 ```
+
+> Hình 2.8: Sơ đồ Usecase tổng quát
+

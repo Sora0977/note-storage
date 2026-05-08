@@ -6,7 +6,7 @@
 
 > Hình 2.9: Mô hình dữ liệu mức ý niệm
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-009.png]]
+![[Hotel booking service/Thesis-report/images/image-009.png]]
 
 ### 3.1.2 Mức luận lý
 
@@ -404,8 +404,6 @@ Bảng User_Role
 
 #### 3.2.1.1 Usecase đăng nhập
 
-> Hình 3.1: Usecase đăng nhập
-
 ```plantuml
 @startuml
 !theme plain
@@ -433,6 +431,9 @@ LockedAccount .up.> Login : <<extend>>\n[Activate == false]
 @enduml
 ```
 
+> Hình 3.1: Usecase đăng nhập
+
+
 Đặc tả Usecase đăng nhập
 
 | Mục | Nội dung |
@@ -448,8 +449,6 @@ LockedAccount .up.> Login : <<extend>>\n[Activate == false]
 | <Extend Use Case><br>Thông báo sai thông tin | Điều kiện: Khi quy trình kiểm tra Email hoặc Mật khẩu thất bại.<br>Hành động:<br>- Hệ thống hiển thị thông báo lỗi: "Tên đăng nhập hoặc mật khẩu không đúng".<br>- Hệ thống xóa trường mật khẩu để người dùng nhập lại. |
 
 #### 3.2.1.2 Usecase đăng ký
-
-> Hình 3.2: Usecase đăng ký
 
 ```plantuml
 @startuml
@@ -476,6 +475,9 @@ ValidationError .up.> Register : <<extend>>\n[Dữ liệu sai hoặc Email trùn
 @enduml
 ```
 
+> Hình 3.2: Usecase đăng ký
+
+
 Đặc tả Usecase đăng ký
 
 | Mục                                           | Nội dung                                                                                                                                                                                                                                                                                                                                                                      |
@@ -491,8 +493,6 @@ ValidationError .up.> Register : <<extend>>\n[Dữ liệu sai hoặc Email trùn
 | <Extend Use Case><br>Hiển thị lỗi Validation  | Điều kiện: Khi quy trình kiểm tra định dạng thất bại hoặc quy trình kiểm tra Email phát hiện trùng lặp.<br>Hành động:<br>- Hệ thống hiển thị thông báo chi tiết lỗi (ví dụ: "Email không hợp lệ", "Email đã tồn tại", "Mật khẩu quá ngắn").<br>- Hệ thống yêu cầu người dùng nhập lại các thông tin chưa hợp lệ.                                                              |
 
 #### 3.2.1.3 Usecase quản lý thông tin cá nhân
-
-> Hình 3.3: Usecase quản lý thông tin cá nhân
 
 ```plantuml
 @startuml
@@ -532,6 +532,9 @@ ValidationError .up.> UpdateProfile : <<extend>>\n[Dữ liệu không hợp lệ
 WrongPassword .up.> ChangePassword : <<extend>>\n[Mật khẩu cũ sai]
 @enduml
 ```
+
+> Hình 3.3: Usecase quản lý thông tin cá nhân
+
 
 Đặc tả Usecase cập nhật thông tin cá nhân
 
@@ -608,8 +611,6 @@ WrongPassword .up.> ChangePassword : <<extend>>\n[Mật khẩu cũ sai]
 
 #### 3.2.1.4 Usecase quản trị người dùng
 
-> Hình 3.4: Usecase quản lý người dùng
-
 ```plantuml
 @startuml
 !theme plain
@@ -643,6 +644,9 @@ UserNotFound .up.> LockUser : <<extend>>\n[Không tìm thấy ID]
 UserNotFound .up.> UnlockUser : <<extend>>\n[Không tìm thấy ID]
 @enduml
 ```
+
+> Hình 3.4: Usecase quản lý người dùng
+
 
 Đặc tả Usecase xem danh sách người dùng
 
@@ -689,8 +693,6 @@ UserNotFound .up.> UnlockUser : <<extend>>\n[Không tìm thấy ID]
 
 #### 3.2.1.5 Usecase quản lý phòng
 
-> Hình 3.5: Usecase quản lý phòng
-
 ```plantuml
 @startuml
 !theme plain
@@ -733,6 +735,9 @@ PermissionError .up.> AddRoom : <<extend>>\n[Không phải chủ sở hữu]
 PermissionError .up.> UpdateRoom : <<extend>>\n[Không phải chủ sở hữu]
 @enduml
 ```
+
+> Hình 3.5: Usecase quản lý phòng
+
 
 Đặc tả Usecase thêm phòng mới
 
@@ -781,8 +786,6 @@ PermissionError .up.> UpdateRoom : <<extend>>\n[Không phải chủ sở hữu]
 
 #### 3.2.1.6 Usecase tra cứu phòng
 
-> Hình 3.6: Usecase tra cứu phòng
-
 ```plantuml
 @startuml
 !theme plain
@@ -824,6 +827,9 @@ NotFound .up.> ViewRoomDetail : <<extend>>\n[Không tìm thấy phòng]
 NoResult .up.> KeywordSearch : <<extend>>\n[Không có kết quả phù hợp]
 @enduml
 ```
+
+> Hình 3.6: Usecase tra cứu phòng
+
 
 Đặc tả Usecase xem danh sách tất cả phòng
 
@@ -899,8 +905,6 @@ NoResult .up.> KeywordSearch : <<extend>>\n[Không có kết quả phù hợp]
 | <Extend Use Case><br>Thông báo lỗi định dạng ảnh | Điều kiện: Khi file ảnh mới tải lên không đúng định dạng cho phép.<br>Hành động:<br>- Hệ thống hiển thị cảnh báo và yêu cầu chọn file khác. |
 #### 3.2.1.7 Usecase quản lý khách sạn
 
-> Hình 3.7: Usecase quản lý khách sạn
-
 ```plantuml
 @startuml
 !theme plain
@@ -948,6 +952,9 @@ DuplicateError .up.> AddHotel : <<extend>>
 MissingImage .up.> AddHotel : <<extend>>
 @enduml
 ```
+
+> Hình 3.7: Usecase quản lý khách sạn
+
 
 Đặc tả Usecase thêm khách sạn mới
 
@@ -1011,8 +1018,6 @@ MissingImage .up.> AddHotel : <<extend>>
 
 #### 3.2.1.8 Usecase tra cứu khách sạn
 
-> Hình 3.8: Usecase tra cứu khách sạn
-
 ```plantuml
 @startuml
 !theme plain
@@ -1049,6 +1054,9 @@ InvalidDate .up.> FindHotel : <<extend>>
 NotFound .up.> ViewHotelDetail : <<extend>>
 @enduml
 ```
+
+> Hình 3.8: Usecase tra cứu khách sạn
+
 
 Đặc tả Usecase xem danh sách tất cả khách sạn
 
@@ -1112,8 +1120,6 @@ NotFound .up.> ViewHotelDetail : <<extend>>
 
 #### 3.2.1.9 Usecase quản lý đặt phòng
 
-> Hình 3.9: Usecase quản lý đặt phòng
-
 ```plantuml
 @startuml
 !theme plain
@@ -1148,6 +1154,9 @@ BookingNotFound .up.> UpdateBookingStatus : <<extend>>
 @enduml
 ```
 
+> Hình 3.9: Usecase quản lý đặt phòng
+
+
 Đặc tả Usecase xem danh sách tất cả Booking
 
 | Mục                                       | Nội dung                                                                                                                                                                                                                      |
@@ -1177,8 +1186,6 @@ BookingNotFound .up.> UpdateBookingStatus : <<extend>>
 | <Extend Use Case><br>Thông báo Booking không tồn tại | Điều kiện: Khi ID của Booking không tìm thấy trong cơ sở dữ liệu.<br>Hành động:<br>- Hệ thống báo lỗi và quay lại danh sách. |
 
 #### 3.2.1.10 Usecase đặt phòng
-
-> Hình 3.10: Usecase quản lý đặt phòng
 
 ```plantuml
 @startuml
@@ -1220,6 +1227,9 @@ RoomHotelNotice .up.> CreateBooking : <<extend>>
 @enduml
 ```
 
+> Hình 3.10: Usecase quản lý đặt phòng
+
+
 Đặc tả Usecase tạo booking mới
 
 | Mục | Nội dung |
@@ -1235,8 +1245,6 @@ RoomHotelNotice .up.> CreateBooking : <<extend>>
 | <Extend Use Case><br>Các trường hợp ngoại lệ | Thông báo ngày không hợp lệ:<br>- Điều kiện: Khi ngày nhập vào vi phạm logic nghiệp vụ.<br>- Hành động: Hệ thống hiển thị lỗi "Ngày đặt không hợp lệ" và yêu cầu chọn lại.<br>Thông báo phòng đã hết chỗ:<br>- Điều kiện: Khi kết quả kiểm tra phòng trống trả về False.<br>- Hành động: Hệ thống báo lỗi "Phòng đã hết chỗ trong khoảng thời gian này".<br>Thông báo phòng không thuộc khách sạn:<br>- Điều kiện: Khi dữ liệu phòng và khách sạn không khớp (lỗi dữ liệu hệ thống).<br>- Hành động: Hệ thống hiển thị thông báo lỗi kỹ thuật tương ứng. |
 
 #### 3.2.1.11 Usecase tra cứu và hủy đơn đặt phòng
-
-> Hình 3.11: Usecase tra cứu và hủy đơn đặt phòng
 
 ```plantuml
 @startuml
@@ -1276,6 +1284,9 @@ CodeNotFound .up.> SearchBookingCode : <<extend>>
 @enduml
 ```
 
+> Hình 3.11: Usecase tra cứu và hủy đơn đặt phòng
+
+
 Đặc tả Usecase tra cứu Booking theo mã
 
 | Mục | Nội dung |
@@ -1306,8 +1317,6 @@ CodeNotFound .up.> SearchBookingCode : <<extend>>
 | <Extend Use Case><br>Thông báo không có quyền | Điều kiện: Khi quy trình kiểm tra quyền sở hữu thất bại.<br>Hành động:<br>- Hệ thống hiển thị cảnh báo bảo mật: "Bạn không có quyền thao tác trên đơn hàng này". |
 
 #### 3.2.1.12 Usecase quản lý tiện ích
-
-> Hình 3.12: Usecase quản lý tiện ích
 
 ```plantuml
 @startuml
@@ -1361,6 +1370,9 @@ DuplicateNameNotice .up.> CreateAmenity : <<extend>>
 DuplicateNameNotice .up.> UpdateAmenity : <<extend>>
 @enduml
 ```
+
+> Hình 3.12: Usecase quản lý tiện ích
+
 
 Đặc tả Usecase tạo tiện ích mới
 
@@ -1441,8 +1453,6 @@ DuplicateNameNotice .up.> UpdateAmenity : <<extend>>
 
 - Sơ đồ tuần tự đăng nhập
 
-> Hình 3.13: Sơ đồ tuần tự đăng nhập
-
 ```plantuml
 @startuml
 !theme plain
@@ -1481,9 +1491,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự đăng ký
+> Hình 3.13: Sơ đồ tuần tự đăng nhập
 
-> Hình 3.14: Sơ đồ tuần tự đăng ký
+
+- Sơ đồ tuần tự đăng ký
 
 ```plantuml
 @startuml
@@ -1525,9 +1536,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự cập nhật thông tin cá nhân
+> Hình 3.14: Sơ đồ tuần tự đăng ký
 
-> Hình 3.15: Sơ đồ tuần tự cập nhật thông tin cá nhân
+
+- Sơ đồ tuần tự cập nhật thông tin cá nhân
 
 ```plantuml
 @startuml
@@ -1561,9 +1573,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự đổi mật khẩu
+> Hình 3.15: Sơ đồ tuần tự cập nhật thông tin cá nhân
 
-> Hình 3.16: Sơ đồ tuần tự đổi mật khẩu
+
+- Sơ đồ tuần tự đổi mật khẩu
 
 ```plantuml
 @startuml
@@ -1606,9 +1619,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem thông tin profile
+> Hình 3.16: Sơ đồ tuần tự đổi mật khẩu
 
-> Hình 3.17: Sơ đồ tuần tự xem thông tin profile
+
+- Sơ đồ tuần tự xem thông tin profile
 
 ```plantuml
 @startuml
@@ -1640,9 +1654,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xóa tài khoản cá nhân
+> Hình 3.17: Sơ đồ tuần tự xem thông tin profile
 
-> Hình 3.18: Sơ đồ tuần tự xóa tài khoản cá nhân
+
+- Sơ đồ tuần tự xóa tài khoản cá nhân
 
 ```plantuml
 @startuml
@@ -1679,9 +1694,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem lịch sử đặt phòng
+> Hình 3.18: Sơ đồ tuần tự xóa tài khoản cá nhân
 
-> Hình 3.19: Sơ đồ tuần tự xem lịch sử đặt phòng
+
+- Sơ đồ tuần tự xem lịch sử đặt phòng
 
 ```plantuml
 @startuml
@@ -1713,9 +1729,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem danh sách người dùng
+> Hình 3.19: Sơ đồ tuần tự xem lịch sử đặt phòng
 
-> Hình 3.20: Sơ đồ tuần tự xem danh sách người dùng
+
+- Sơ đồ tuần tự xem danh sách người dùng
 
 ```plantuml
 @startuml
@@ -1748,9 +1765,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự khóa tài khoản người dùng
+> Hình 3.20: Sơ đồ tuần tự xem danh sách người dùng
 
-> Hình 3.21: Sơ đồ tuần tự khóa tài khoản người dùng
+
+- Sơ đồ tuần tự khóa tài khoản người dùng
 
 ```plantuml
 @startuml
@@ -1784,9 +1802,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự mở khóa tài khoản người dùng
+> Hình 3.21: Sơ đồ tuần tự khóa tài khoản người dùng
 
-> Hình 3.22: Sơ đồ tuần tự mở khóa tài khoản người dùng
+
+- Sơ đồ tuần tự mở khóa tài khoản người dùng
 
 ```plantuml
 @startuml
@@ -1819,9 +1838,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự thêm phòng mới
+> Hình 3.22: Sơ đồ tuần tự mở khóa tài khoản người dùng
 
-> Hình 3.23: Sơ đồ tuần tự thêm phòng mới
+
+- Sơ đồ tuần tự thêm phòng mới
 
 ```plantuml
 @startuml
@@ -1863,9 +1883,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự cập nhật thông tin phòng
+> Hình 3.23: Sơ đồ tuần tự thêm phòng mới
 
-> Hình 3.24: Sơ đồ tuần tự cập nhật thông tin phòng
+
+- Sơ đồ tuần tự cập nhật thông tin phòng
 
 ```plantuml
 @startuml
@@ -1910,9 +1931,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xóa phòng
+> Hình 3.24: Sơ đồ tuần tự cập nhật thông tin phòng
 
-> Hình 3.25: Sơ đồ tuần tự xóa phòng
+
+- Sơ đồ tuần tự xóa phòng
 
 ```plantuml
 @startuml
@@ -1947,9 +1969,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem danh sách tất cả phòng
+> Hình 3.25: Sơ đồ tuần tự xóa phòng
 
-> Hình 3.26: Sơ đồ tuần tự xem danh sách tất cả phòng
+
+- Sơ đồ tuần tự xem danh sách tất cả phòng
 
 ```plantuml
 @startuml
@@ -1980,9 +2003,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự tìm phòng trống theo ngày
+> Hình 3.26: Sơ đồ tuần tự xem danh sách tất cả phòng
 
-> Hình 3.27: Sơ đồ tuần tự tìm phòng trống theo ngày
+
+- Sơ đồ tuần tự tìm phòng trống theo ngày
 
 ```plantuml
 @startuml
@@ -2015,9 +2039,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem chi tiết phòng
+> Hình 3.27: Sơ đồ tuần tự tìm phòng trống theo ngày
 
-> Hình 3.28: Sơ đồ tuần tự xem chi tiết phòng
+
+- Sơ đồ tuần tự xem chi tiết phòng
 
 ```plantuml
 @startuml
@@ -2050,9 +2075,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự tìm kiếm phòng
+> Hình 3.28: Sơ đồ tuần tự xem chi tiết phòng
 
-> Hình 3.29: Sơ đồ tuần tự tìm kiếm phòng theo từ khóa
+
+- Sơ đồ tuần tự tìm kiếm phòng
 
 ```plantuml
 @startuml
@@ -2084,9 +2110,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem loại phòng
+> Hình 3.29: Sơ đồ tuần tự tìm kiếm phòng theo từ khóa
 
-> Hình 3.30: Sơ đồ tuần tự xem loại phòng
+
+- Sơ đồ tuần tự xem loại phòng
 
 ```plantuml
 @startuml
@@ -2117,9 +2144,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự thêm khách sạn mới
+> Hình 3.30: Sơ đồ tuần tự xem loại phòng
 
-> Hình 3.31: Sơ đồ tuần tự thêm khách sạn mới
+
+- Sơ đồ tuần tự thêm khách sạn mới
 
 ```plantuml
 @startuml
@@ -2163,9 +2191,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự cập nhật khách sạn
+> Hình 3.31: Sơ đồ tuần tự thêm khách sạn mới
 
-> Hình 3.32: Sơ đồ tuần tự cập nhật khách sạn
+
+- Sơ đồ tuần tự cập nhật khách sạn
 
 ```plantuml
 @startuml
@@ -2205,9 +2234,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xóa khách sạn
+> Hình 3.32: Sơ đồ tuần tự cập nhật khách sạn
 
-> Hình 3.33: Sơ đồ tuần tự xóa khách sạn
+
+- Sơ đồ tuần tự xóa khách sạn
 
 ```plantuml
 @startuml
@@ -2248,9 +2278,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem danh sách khách sạn của tôi
+> Hình 3.33: Sơ đồ tuần tự xóa khách sạn
 
-> Hình 3.34: Sơ đồ tuần tự xem danh sách khách sạn của tôi
+
+- Sơ đồ tuần tự xem danh sách khách sạn của tôi
 
 ```plantuml
 @startuml
@@ -2290,9 +2321,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem danh sách tất cả khách sạn
+> Hình 3.34: Sơ đồ tuần tự xem danh sách khách sạn của tôi
 
-> Hình 3.35: Sơ đồ tuần tự xem danh sách tất cả khách sạn
+
+- Sơ đồ tuần tự xem danh sách tất cả khách sạn
 
 ```plantuml
 @startuml
@@ -2324,9 +2356,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem chi tiết khách sạn
+> Hình 3.35: Sơ đồ tuần tự xem danh sách tất cả khách sạn
 
-> Hình 3.36: Sơ đồ tuần tự xem chi tiết khách sạn
+
+- Sơ đồ tuần tự xem chi tiết khách sạn
 
 ```plantuml
 @startuml
@@ -2360,9 +2393,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự tìm kiếm khách sạn
+> Hình 3.36: Sơ đồ tuần tự xem chi tiết khách sạn
 
-> Hình 3.37: Sơ đồ tuần tự tìm kiếm khách sạn
+
+- Sơ đồ tuần tự tìm kiếm khách sạn
 
 ```plantuml
 @startuml
@@ -2396,9 +2430,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem danh sách phòng của khách sạn
+> Hình 3.37: Sơ đồ tuần tự tìm kiếm khách sạn
 
-> Hình 3.38: Sơ đồ tuần tự xem danh sách phòng của khách sạn
+
+- Sơ đồ tuần tự xem danh sách phòng của khách sạn
 
 ```plantuml
 @startuml
@@ -2432,9 +2467,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xem danh sách tất cả booking
+> Hình 3.38: Sơ đồ tuần tự xem danh sách phòng của khách sạn
 
-> Hình 3.39: Sơ đồ tuần tự xem danh sách tất cả booking
+
+- Sơ đồ tuần tự xem danh sách tất cả booking
 
 ```plantuml
 @startuml
@@ -2467,9 +2503,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự cập nhật trạng thái booking
+> Hình 3.39: Sơ đồ tuần tự xem danh sách tất cả booking
 
-> Hình 3.40: Sơ đồ tuần tự cập nhật trạng thái booking
+
+- Sơ đồ tuần tự cập nhật trạng thái booking
 
 ```plantuml
 @startuml
@@ -2513,9 +2550,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự tạo booking mới
+> Hình 3.40: Sơ đồ tuần tự cập nhật trạng thái booking
 
-> Hình 3.41: Sơ đồ tuần tự tạo booking mới
+
+- Sơ đồ tuần tự tạo booking mới
 
 ```plantuml
 @startuml
@@ -2567,9 +2605,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự tra cứu booking theo mã
+> Hình 3.41: Sơ đồ tuần tự tạo booking mới
 
-> Hình 3.42: Sơ đồ tuần tự tra cứu booking theo mã
+
+- Sơ đồ tuần tự tra cứu booking theo mã
 
 ```plantuml
 @startuml
@@ -2603,9 +2642,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự hủy đặt phòng
+> Hình 3.42: Sơ đồ tuần tự tra cứu booking theo mã
 
-> Hình 3.43: Sơ đồ tuần tự hủy đặt phòng
+
+- Sơ đồ tuần tự hủy đặt phòng
 
 ```plantuml
 @startuml
@@ -2649,9 +2689,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự tạo tiện ích mới
+> Hình 3.43: Sơ đồ tuần tự hủy đặt phòng
 
-> Hình 3.44: Sơ đồ tuần tự tạo tiện ích mới
+
+- Sơ đồ tuần tự tạo tiện ích mới
 
 ```plantuml
 @startuml
@@ -2686,9 +2727,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự cập nhật tiện ích
+> Hình 3.44: Sơ đồ tuần tự tạo tiện ích mới
 
-> Hình 3.45: Sơ đồ tuần tự cập nhật tiện ích
+
+- Sơ đồ tuần tự cập nhật tiện ích
 
 ```plantuml
 @startuml
@@ -2731,9 +2773,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự xóa tiện ích hệ thống
+> Hình 3.45: Sơ đồ tuần tự cập nhật tiện ích
 
-> Hình 3.46: Sơ đồ tuần tự xóa tiện ích hệ thống
+
+- Sơ đồ tuần tự xóa tiện ích hệ thống
 
 ```plantuml
 @startuml
@@ -2777,9 +2820,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự gỡ tiện ích khỏi khách sạn
+> Hình 3.46: Sơ đồ tuần tự xóa tiện ích hệ thống
 
-> Hình 3.47: Sơ đồ tuần tự gỡ tiện ích khỏi khách sạn
+
+- Sơ đồ tuần tự gỡ tiện ích khỏi khách sạn
 
 ```plantuml
 @startuml
@@ -2820,9 +2864,10 @@ end
 @enduml
 ```
 
-- Sơ đồ tuần tự gỡ tiện ích khỏi phòng
+> Hình 3.47: Sơ đồ tuần tự gỡ tiện ích khỏi khách sạn
 
-> Hình 3.48: Sơ đồ tuần tự gỡ tiện ích khỏi phòng
+
+- Sơ đồ tuần tự gỡ tiện ích khỏi phòng
 
 ```plantuml
 @startuml
@@ -2870,11 +2915,12 @@ end
 @enduml
 ```
 
+> Hình 3.48: Sơ đồ tuần tự gỡ tiện ích khỏi phòng
+
+
 ### 3.2.3 Sơ đồ hoạt động (activity)
 
 - Sơ đồ hoạt động đăng nhập
-
-> Hình 3.49: Sơ đồ hoạt động đăng nhập
 
 ```plantuml
 @startuml
@@ -2930,9 +2976,10 @@ repeat while (Yêu cầu nhập lại?) is ([Yêu cầu nhập lại])
 @enduml
 ```
 
-- Sơ đồ hoạt động đăng ký
+> Hình 3.49: Sơ đồ hoạt động đăng nhập
 
-> Hình 3.50: Sơ đồ hoạt động đăng ký tài khoản
+
+- Sơ đồ hoạt động đăng ký
 
 ```plantuml
 @startuml
@@ -2982,9 +3029,10 @@ repeat while (Yêu cầu nhập lại?) is ([Yêu cầu nhập lại])
 @enduml
 ```
 
-- Sơ đồ hoạt động cập nhật thông tin cá nhân
+> Hình 3.50: Sơ đồ hoạt động đăng ký tài khoản
 
-> Hình 3.51: Sơ đồ hoạt động cập nhật thông tin cá nhân
+
+- Sơ đồ hoạt động cập nhật thông tin cá nhân
 
 ```plantuml
 @startuml
@@ -3026,9 +3074,10 @@ repeat while (Yêu cầu nhập lại?) is ([Yêu cầu nhập lại])
 @enduml
 ```
 
-- Sơ đồ hoạt động đổi mật khẩu
+> Hình 3.51: Sơ đồ hoạt động cập nhật thông tin cá nhân
 
-> Hình 3.52: Sơ đồ hoạt động đổi mật khẩu
+
+- Sơ đồ hoạt động đổi mật khẩu
 
 ```plantuml
 @startuml
@@ -3077,9 +3126,10 @@ repeat while (Yêu cầu nhập lại?) is ([Yêu cầu nhập lại])
 @enduml
 ```
 
-- Sơ đồ hoạt động xem thông tin Profile
+> Hình 3.52: Sơ đồ hoạt động đổi mật khẩu
 
-> Hình 3.53: Sơ đồ hoạt động xem thông tin profile
+
+- Sơ đồ hoạt động xem thông tin Profile
 
 ```plantuml
 @startuml
@@ -3108,9 +3158,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xóa tài khoản cá nhân
+> Hình 3.53: Sơ đồ hoạt động xem thông tin profile
 
-> Hình 3.54: Sơ đồ hoạt động xóa tài khoản cá nhân
+
+- Sơ đồ hoạt động xóa tài khoản cá nhân
 
 ```plantuml
 @startuml
@@ -3149,9 +3200,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xem lịch sử đặt phòng
+> Hình 3.54: Sơ đồ hoạt động xóa tài khoản cá nhân
 
-> Hình 3.55: Sơ đồ hoạt động xem lịch sử đặt phòng
+
+- Sơ đồ hoạt động xem lịch sử đặt phòng
 
 ```plantuml
 @startuml
@@ -3182,9 +3234,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xem danh sách người dùng
+> Hình 3.55: Sơ đồ hoạt động xem lịch sử đặt phòng
 
-> Hình 3.56: Sơ đồ hoạt động xem danh sách người dùng
+
+- Sơ đồ hoạt động xem danh sách người dùng
 
 ```plantuml
 @startuml
@@ -3216,9 +3269,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động khóa tài khoản người dùng
+> Hình 3.56: Sơ đồ hoạt động xem danh sách người dùng
 
-> Hình 3.57: Sơ đồ hoạt động khóa tài khoản người dùng
+
+- Sơ đồ hoạt động khóa tài khoản người dùng
 
 ```plantuml
 @startuml
@@ -3249,9 +3303,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động mở khóa tài khoản người dùng
+> Hình 3.57: Sơ đồ hoạt động khóa tài khoản người dùng
 
-> Hình 3.58: Sơ đồ hoạt động mở khóa tài khoản người dùng
+
+- Sơ đồ hoạt động mở khóa tài khoản người dùng
 
 ```plantuml
 @startuml
@@ -3282,9 +3337,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động thêm phòng mới
+> Hình 3.58: Sơ đồ hoạt động mở khóa tài khoản người dùng
 
-> Hình 3.59: Sơ đồ hoạt động thêm phòng mới
+
+- Sơ đồ hoạt động thêm phòng mới
 
 ```plantuml
 @startuml
@@ -3342,9 +3398,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động cập nhật thông tin phòng
+> Hình 3.59: Sơ đồ hoạt động thêm phòng mới
 
-> Hình 3.60: Sơ đồ hoạt động cập nhật thông tin phòng
+
+- Sơ đồ hoạt động cập nhật thông tin phòng
 
 ```plantuml
 @startuml
@@ -3395,9 +3452,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xóa phòng
+> Hình 3.60: Sơ đồ hoạt động cập nhật thông tin phòng
 
-> Hình 3.61: Sơ đồ hoạt động xóa phòng
+
+- Sơ đồ hoạt động xóa phòng
 
 ```plantuml
 @startuml
@@ -3436,9 +3494,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xem danh sách tất cả phòng
+> Hình 3.61: Sơ đồ hoạt động xóa phòng
 
-> Hình 3.62: Sơ đồ hoạt động xem danh sách tất cả phòng
+
+- Sơ đồ hoạt động xem danh sách tất cả phòng
 
 ```plantuml
 @startuml
@@ -3467,9 +3526,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động tìm phòng trống theo ngày
+> Hình 3.62: Sơ đồ hoạt động xem danh sách tất cả phòng
 
-> Hình 3.63: Sơ đồ hoạt động tìm phòng trống theo ngày
+
+- Sơ đồ hoạt động tìm phòng trống theo ngày
 
 ```plantuml
 @startuml
@@ -3514,9 +3574,10 @@ stop
 @enduml
 ```
 
-- Sơ đồ hoạt động xem chi tiết phòng
+> Hình 3.63: Sơ đồ hoạt động tìm phòng trống theo ngày
 
-> Hình 3.64: Sơ đồ hoạt động xem chi tiết phòng
+
+- Sơ đồ hoạt động xem chi tiết phòng
 
 ```plantuml
 @startuml
@@ -3543,9 +3604,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động tìm kiếm phòng
+> Hình 3.64: Sơ đồ hoạt động xem chi tiết phòng
 
-> Hình 3.65: Sơ đồ hoạt động tìm kiếm phòng
+
+- Sơ đồ hoạt động tìm kiếm phòng
 
 ```plantuml
 @startuml
@@ -3571,9 +3633,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xem loại phòng
+> Hình 3.65: Sơ đồ hoạt động tìm kiếm phòng
 
-> Hình 3.66: Sơ đồ hoạt động xem loại phòng
+
+- Sơ đồ hoạt động xem loại phòng
 
 ```plantuml
 @startuml
@@ -3598,9 +3661,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động thêm khách sạn mới
+> Hình 3.66: Sơ đồ hoạt động xem loại phòng
 
-> Hình 3.67: Sơ đồ hoạt động thêm khách sạn mới
+
+- Sơ đồ hoạt động thêm khách sạn mới
 
 ```plantuml
 @startuml
@@ -3648,9 +3712,10 @@ stop
 @enduml
 ```
 
-- Sơ đồ hoạt động cập nhật khách sạn
+> Hình 3.67: Sơ đồ hoạt động thêm khách sạn mới
 
-> Hình 3.68: Sơ đồ hoạt động cập nhật khách sạn
+
+- Sơ đồ hoạt động cập nhật khách sạn
 
 ```plantuml
 @startuml
@@ -3689,9 +3754,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xóa khách sạn
+> Hình 3.68: Sơ đồ hoạt động cập nhật khách sạn
 
-> Hình 3.69: Sơ đồ hoạt động xóa khách sạn
+
+- Sơ đồ hoạt động xóa khách sạn
 
 ```plantuml
 @startuml
@@ -3732,9 +3798,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xem danh sách khách sạn của tôi
+> Hình 3.69: Sơ đồ hoạt động xóa khách sạn
 
-> Hình 3.70: Sơ đồ hoạt động xem danh sách khách sạn của tôi
+
+- Sơ đồ hoạt động xem danh sách khách sạn của tôi
 
 ```plantuml
 @startuml
@@ -3765,9 +3832,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xem danh sách tất cả khách sạn
+> Hình 3.70: Sơ đồ hoạt động xem danh sách khách sạn của tôi
 
-> Hình 3.71: Sơ đồ hoạt động danh sách tất cả khách sạn
+
+- Sơ đồ hoạt động xem danh sách tất cả khách sạn
 
 ```plantuml
 @startuml
@@ -3792,9 +3860,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xem chi tiết khách sạn
+> Hình 3.71: Sơ đồ hoạt động danh sách tất cả khách sạn
 
-> Hình 3.72: Sơ đồ hoạt động xem chi tiết khách sạn
+
+- Sơ đồ hoạt động xem chi tiết khách sạn
 
 ```plantuml
 @startuml
@@ -3821,9 +3890,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động tìm kiếm khách sạn
+> Hình 3.72: Sơ đồ hoạt động xem chi tiết khách sạn
 
-> Hình 3.73: Sơ đồ hoạt động tìm kiếm khách sạn
+
+- Sơ đồ hoạt động tìm kiếm khách sạn
 
 ```plantuml
 @startuml
@@ -3863,9 +3933,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xem danh sách phòng của khách sạn
+> Hình 3.73: Sơ đồ hoạt động tìm kiếm khách sạn
 
-> Hình 3.74: Sơ đồ hoạt động xem danh sách phòng của khách sạn
+
+- Sơ đồ hoạt động xem danh sách phòng của khách sạn
 
 ```plantuml
 @startuml
@@ -3897,9 +3968,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động xem danh sách tất cả Booking
+> Hình 3.74: Sơ đồ hoạt động xem danh sách phòng của khách sạn
 
-> Hình 3.75: Sơ đồ hoạt động xem danh sách tất cả Booking
+
+- Sơ đồ hoạt động xem danh sách tất cả Booking
 
 ```plantuml
 @startuml
@@ -3926,9 +3998,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động cập nhật trạng thái Booking
+> Hình 3.75: Sơ đồ hoạt động xem danh sách tất cả Booking
 
-> Hình 3.76: Sơ đồ hoạt động cập nhật trạng thái booking
+
+- Sơ đồ hoạt động cập nhật trạng thái Booking
 
 ```plantuml
 @startuml
@@ -3971,9 +4044,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động tạo Booking mới
+> Hình 3.76: Sơ đồ hoạt động cập nhật trạng thái booking
 
-> Hình 3.77: Sơ đồ hoạt động tạo booking mới
+
+- Sơ đồ hoạt động tạo Booking mới
 
 ```plantuml
 @startuml
@@ -4019,9 +4093,10 @@ stop
 @enduml
 ```
 
-- Sơ đồ hoạt động tra cứu Booking theo mã
+> Hình 3.77: Sơ đồ hoạt động tạo booking mới
 
-> Hình 3.78: Sơ đồ hoạt động tra cứu booking theo mã
+
+- Sơ đồ hoạt động tra cứu Booking theo mã
 
 ```plantuml
 @startuml
@@ -4053,9 +4128,10 @@ repeat while (Tìm thấy đơn hàng?) is ([False]) not ([True])
 @enduml
 ```
 
-- Sơ đồ hoạt động hủy đặt phòng
+> Hình 3.78: Sơ đồ hoạt động tra cứu booking theo mã
 
-> Hình 3.79: Sơ đồ hoạt động hủy đặt phòng
+
+- Sơ đồ hoạt động hủy đặt phòng
 
 ```plantuml
 @startuml
@@ -4094,9 +4170,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động tạo tiện ích mới
+> Hình 3.79: Sơ đồ hoạt động hủy đặt phòng
 
-> Hình 3.80: Sơ đồ hoạt động tạo tiện ích mới
+
+- Sơ đồ hoạt động tạo tiện ích mới
 
 ```plantuml
 @startuml
@@ -4148,9 +4225,10 @@ stop
 @enduml
 ```
 
-- Sơ đồ hoạt động cập nhật tiện ích
+> Hình 3.80: Sơ đồ hoạt động tạo tiện ích mới
 
-> Hình 3.81: Sơ đồ hoạt động cập nhật tiện ích
+
+- Sơ đồ hoạt động cập nhật tiện ích
 
 ```plantuml
 @startuml
@@ -4197,9 +4275,10 @@ stop
 @enduml
 ```
 
-- Sơ đồ hoạt động xóa tiện ích hệ thống
+> Hình 3.81: Sơ đồ hoạt động cập nhật tiện ích
 
-> Hình 3.82: Sơ đồ hoạt động xóa tiện ích hệ thống
+
+- Sơ đồ hoạt động xóa tiện ích hệ thống
 
 ```plantuml
 @startuml
@@ -4242,9 +4321,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động gỡ tiện ích khỏi Khách sạn
+> Hình 3.82: Sơ đồ hoạt động xóa tiện ích hệ thống
 
-> Hình 3.83: Sơ đồ hoạt động gỡ tiện ích khỏi khách sạn
+
+- Sơ đồ hoạt động gỡ tiện ích khỏi Khách sạn
 
 ```plantuml
 @startuml
@@ -4282,9 +4362,10 @@ endif
 @enduml
 ```
 
-- Sơ đồ hoạt động gỡ tiện ích khỏi Phòng
+> Hình 3.83: Sơ đồ hoạt động gỡ tiện ích khỏi khách sạn
 
-> Hình 3.84: Sơ đồ hoạt động gỡ tiện ích khỏi phòng
+
+- Sơ đồ hoạt động gỡ tiện ích khỏi Phòng
 
 ```plantuml
 @startuml
@@ -4322,180 +4403,183 @@ endif
 @enduml
 ```
 
+> Hình 3.84: Sơ đồ hoạt động gỡ tiện ích khỏi phòng
+
+
 ## 3.3 Hệ thống màn hình
 
 - Giao diện đăng nhập
 
 > Hình 3.85: Giao diện đăng nhập
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-096.png]]
+![[Hotel booking service/Thesis-report/images/image-096.png]]
 
 - Giao diện đăng ký
 
 > Hình 3.86: Giao diện đăng ký
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-097.png]]
+![[Hotel booking service/Thesis-report/images/image-097.png]]
 
 - Giao diện trang chủ
 
 > Hình 3.87: Giao diện trang chủ
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-098.png]]
+![[Hotel booking service/Thesis-report/images/image-098.png]]
 - Giao diện xem tất cả khách sạn
 
 > Hình 3.88: Giao diện xem tất cả khách sạn
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-099.png]]
+![[Hotel booking service/Thesis-report/images/image-099.png]]
 - Giao diện xem chi tiết khách sạn
 
 > Hình 3.89: Giao diện xem chi tiết khách sạn
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-100.png]]
+![[Hotel booking service/Thesis-report/images/image-100.png]]
 - Giao diện xem phòng của một khách sạn
 
 > Hình 3.90: Giao diện xem phòng của một khách sạn
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-101.png]]
+![[Hotel booking service/Thesis-report/images/image-101.png]]
 
 - Giao diện xem chi tiết thông tin phòng và form đặt phòng
 
 > Hình 3.91: Giao diện xem chi tiết thông tin phòng và form đặt phòng
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-102.png]]
+![[Hotel booking service/Thesis-report/images/image-102.png]]
 - Giao diện đặt phòng thành công
 
 > Hình 3.92: Giao diện đặt phòng thành công
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-103.png]]
+![[Hotel booking service/Thesis-report/images/image-103.png]]
 
 - Giao diện lịch sử đặt phòng và tìm kiếm
 
 > Hình 3.93: Giao diện lịch sử đặt phòng và tìm kiếm
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-104.png]]
+![[Hotel booking service/Thesis-report/images/image-104.png]]
 
 - Giao xem chi tiết thông tin đặt phòng
 
 > Hình 3.94: Giao xem chi tiết thông tin đặt phòng
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-105.png]]
+![[Hotel booking service/Thesis-report/images/image-105.png]]
 
 - Giao diện khi chọn hủy đặt phòng:
 
 > Hình 3.95: Giao diện khi chọn hủy đặt phòng
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-106.png]]
+![[Hotel booking service/Thesis-report/images/image-106.png]]
 
 - Giao diện thông tin cá nhân (thông tin cá nhân và thay đổi mật khẩu)
 
 > Hình 3.96: Giao diện thông tin cá nhân
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-107.png]]
+![[Hotel booking service/Thesis-report/images/image-107.png]]
 
 - Giao diện chính trang quản trị (Quản trị viên)
 
 > Hình 3.97: Giao diện chính trang quản trị
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-108.png]]
+![[Hotel booking service/Thesis-report/images/image-108.png]]
 
 - Giao diện quản lý tài khoản (Quản trị viên)
 
 > Hình 3.98: Giao diện quản lý tài khoản
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-109.png]]
+![[Hotel booking service/Thesis-report/images/image-109.png]]
 
 - Giao diện quản lý khách sạn (Quản trị viên)
 
 > Hình 3.99: Giao diện quản lý khách sạn
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-110.png]]
+![[Hotel booking service/Thesis-report/images/image-110.png]]
 
 - Giao diện khi nhấn vào “Quản lý” của một khách sạn cụ thể
 
 > Hình 3.100: Giao diện khi nhấn vào “Quản lý” của một khách sạn cụ thể
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-111.png]]
+![[Hotel booking service/Thesis-report/images/image-111.png]]
 
 - Giao diện quản lý phòng của một khách sạn
 
 > Hình 3.101: Giao diện quản lý phòng của một khách sạn
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-112.png]]
+![[Hotel booking service/Thesis-report/images/image-112.png]]
 
 - Giao diện thêm một phòng mới cho khách sạn hiện tại
 
 > Hình 3.102: Giao diện thêm một phòng mới cho khách sạn hiện tại
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-113.png]]
+![[Hotel booking service/Thesis-report/images/image-113.png]]
 
 - Giao diện chỉnh sửa phòng
 
 > Hình 3.103: Giao diện chỉnh sửa phòng
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-114.png]]
+![[Hotel booking service/Thesis-report/images/image-114.png]]
 
 - Giao diện xác nhận khi xóa một phòng
 
 > Hình 3.104: Giao diện xác nhận khi xóa một phòng
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-115.png]]
+![[Hotel booking service/Thesis-report/images/image-115.png]]
 
 - Giao diện thêm mới một khách sạn (Quản trị viên)
 
 > Hình 3.105: Giao diện thêm mới một khách sạn
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-116.png]]
+![[Hotel booking service/Thesis-report/images/image-116.png]]
 
 - Giao diện chỉnh sửa một khách sạn (Quản trị viên)
 
 > Hình 3.106: Giao diện chỉnh sửa một khách sạn
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-117.png]]
+![[Hotel booking service/Thesis-report/images/image-117.png]]
 
 - Giao diện xác nhận trước khi xóa một khách sạn (Quản trị viên)
 
 > Hình 3.107: Giao diện xác nhận trước khi xóa một khách sạn
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-118.png]]
+![[Hotel booking service/Thesis-report/images/image-118.png]]
 
 - Giao diện quản lý và tìm kiếm đặt phòng (Quản trị viên)
 
 > Hình 3.108: Giao diện quản lý và tìm kiếm đặt phòng
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-119.png]]
+![[Hotel booking service/Thesis-report/images/image-119.png]]
 
 - Giao diện chuyển đổi trạng thái nhận từ “đã đặt” thành “đã nhận phòng”
 
 > Hình 3.109: Giao diện chuyển đổi trạng thái nhận từ “đã đặt” thành “đã nhận phòng”
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-120.png]]
+![[Hotel booking service/Thesis-report/images/image-120.png]]
 
 - Giao diện quản lý tiện nghi (Quản trị viên)
 
 > Hình 3.110: Giao diện quản lý tiện nghi
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-121.png]]
+![[Hotel booking service/Thesis-report/images/image-121.png]]
 
 - Giao diện thêm mới một tiện nghi (Quản trị viên)
 
 > Hình 3.111: Giao diện thêm mới một tiện nghi
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-122.png]]
+![[Hotel booking service/Thesis-report/images/image-122.png]]
 
 - Giao diện chỉnh sửa một tiên nghi
 
 > Hình 3.112: Giao diện chỉnh sửa một tiên nghi
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-123.png]]
+![[Hotel booking service/Thesis-report/images/image-123.png]]
 
 - Giao diện xác nhận xóa một tiện nghi
 
 > Hình 3.113: Giao diện xác nhận xóa một tiện nghi
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-124.png]]
+![[Hotel booking service/Thesis-report/images/image-124.png]]
 
 - Giao diện xem tất cả tiện nghi các cấp của một khách sạn
 
 > Hình 3.113: Giao diện xem tất cả tiện nghi các cấp của một khách sạn
 
-![[Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/images/image-125.png]]
+![[Hotel booking service/Thesis-report/images/image-125.png]]
