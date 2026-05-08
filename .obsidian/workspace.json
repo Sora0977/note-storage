@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Hotel booking service/Thesis-report/chapters/chuong-3-thiet-ke.md",
+                "file": "Hotel booking service/Update plan.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "chuong-3-thiet-ke"
+              "title": "Update plan"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Hotel booking service/Thesis-report/chapters/chuong-3-thiet-ke.md",
+                "file": "Hotel booking service/Update plan.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of chuong-3-thiet-ke"
+              "title": "Outline of Update plan"
             }
           },
           {
@@ -194,8 +194,13 @@
       "bases:Create new base": false
     }
   },
-  "active": "3b83d99a5688479a",
+  "active": "4306cee8c28bda1b",
   "lastOpenFiles": [
+    "Hotel booking service/Thesis-report/chapters/chuong-4-ket-luan.md",
+    "Hotel booking service/Update plan.md",
+    "Hotel booking service/Thesis-report/chapters/chuong-1-gioi-thieu.md",
+    "Hotel booking service/Thesis-report/chapters/chuong-2-phuong-phap-thuc-hien.md",
+    "Hotel booking service/Thesis-report/chapters/chuong-3-thiet-ke.md",
     "Hotel booking service/Thesis-report/Backup/v0.1/images/image-125.png",
     "Hotel booking service/Thesis-report/Backup/v0.1/images/image-124.png",
     "Hotel booking service/Thesis-report/Backup/v0.1/images/image-123.png",
@@ -206,7 +211,6 @@
     "Hotel booking service/Thesis-report/Backup/v0.1/images/image-118.png",
     "Hotel booking service/Thesis-report/Backup/v0.1/images/image-117.png",
     "Hotel booking service/Thesis-report/Backup/v0.1/images/image-116.png",
-    "Hotel booking service/Thesis-report/Backup/v0.1/images/image-115.png",
     "Hotel booking service/Thesis-report/Backup/v0.1/images",
     "Hotel booking service/Thesis-report/Backup/v0.1/chapters/README.md",
     "Hotel booking service/Thesis-report/Backup/v0.1/chapters/chuong-4-ket-luan.md",
@@ -223,12 +227,8 @@
     "Hotel booking service/Thesis-report/Backup/chapters/chuong-2-phuong-phap-thuc-hien.md",
     "Hotel booking service/Thesis-report/Backup/chapters/chuong-1-gioi-thieu.md",
     "Hotel booking service/Thesis-report/Backup/chapters",
-    "Hotel booking service/Thesis-report/chapters/chuong-4-ket-luan.md",
-    "Hotel booking service/Thesis-report/chapters/chuong-2-phuong-phap-thuc-hien.md",
-    "Hotel booking service/Thesis-report/chapters/chuong-1-gioi-thieu.md",
     "Hotel booking service/Thesis-report/images",
     "Hotel booking service/Thesis-report/chapters/README.md",
-    "Hotel booking service/Thesis-report/chapters/chuong-3-thiet-ke.md",
     "Hotel booking service/Thesis-report/chapters",
     "Hotel booking service/Thesis-report/Backup",
     "Hotel booking service/Thesis-report",
