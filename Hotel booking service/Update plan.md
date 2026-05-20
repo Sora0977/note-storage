@@ -1,24 +1,36 @@
-- Quản lý phòng 
-	- Phòng phải có ban công , phòng nhỏ ...
-	- Phòng có ban công hay không 
-	- Phòng có máy lạnh hay không 
-- Quản lý khách 
-- Quản lý nhân viên 
-- Làm chart phòng để biết phòng nào đang trống thì người ta book vào luôn ( bảng total để biết người ta còn bao nhiêu phòng để book )
+# Update Plan
 
-- Quản lý hư hao , quản lý tình trạng phòng
-- Chỉnh dataset mới lại 
-- Rảnh thì làm lại cái giao diện 
+## Phạm vi cập nhật
 
-To do
-- Quản lý hư hao 
-- Quản lý ban công và máy lạnh 
-- Quản lý khách 
-- Quản lý nhân viên 
+### Quản lý phòng
 
-- giảm giá , hoa hồng 
-- Nước uống ultility
+- Bổ sung thông tin đặc điểm phòng:
+  - Phòng có ban công hay không.
+  - Phòng có máy lạnh hay không.
+  - Phân loại/kích thước phòng, ví dụ: phòng nhỏ.
+- Làm chart phòng để biết phòng nào đang trống và có thể đặt ngay.
+- Bổ sung bảng tổng hợp số lượng phòng còn lại để người dùng biết còn bao nhiêu phòng có thể book.
+- Quản lý hư hao và tình trạng phòng.
 
-Changelog
-- PhysicalRoom in entity 
- - 
+### Quản lý người dùng nội bộ
+
+- Quản lý khách.
+- Quản lý nhân viên.
+
+### Dữ liệu và giao diện
+
+- Chỉnh lại dataset mới.
+- Khi có thời gian, làm lại giao diện.
+
+## To Do
+
+- [ ] Quản lý hư hao.
+- [ ] Quản lý ban công và máy lạnh.
+- [ ] Quản lý khách.
+- [ ] Quản lý nhân viên.
+- [ ] Quản lý giảm giá và hoa hồng.
+- [ ] Bổ sung nước uống/utility.
+
+## Changelog
+
+- Thêm `PhysicalRoom` vào entity.

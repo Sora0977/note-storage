@@ -45,17 +45,46 @@ Install software for tablet
 sửa máy in tem ở dưới nhà máy 
 
 
-sửa máy in tem ở dưới nhà máy 
+
 Fix printer dưới nhà máy 
 Install software for tablet 
 Cài máy in cho user 
+Troubleshoot software tablet dưới nhà máy 
+Install new HDD for PC cho Mr.Loc
 
 
-3.13 ->3.34 ->  3.48
 
-Flow
-3.49 ->3.63 -> 3.84
 
-- Error 3.3 vẽ thiếu  Usecase quản lý thông tin cá nhân
+Fix printer cho user
+Cài intune cho laptop
+Cài máy in cho user 
+Setup new laptop cho user
 
+
+
+Cài intune cho laptop
+Cài máy in cho user 
+Fix microsoft excel không mở được
+Setup new laptop cho user
+
+
+Cài intune cho laptop
+Setup new laptop cho user
+Install software for laptop
+Install Malsy cho laptop
+Troubleshoot network của tablet dưới nhà máy 
+
+
+
+Support to turn off firewall on desktop
+Install new software for tablet and desktop in factory
+Troubleshoot software can't open excel
+Install software for laptop
+Install Malsy cho laptop
+
+Setup software for laptop
+Install microsoft intune for laptop
+Support User to Transfer all data into new laptop
+Setup software for new tablet
+Install Malsy cho laptop
 

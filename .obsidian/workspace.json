@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Hotel booking service/Update plan.md",
+                "file": "Daily.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Update plan"
+              "title": "Daily"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Hotel booking service/Update plan.md",
+                "file": "Daily.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Update plan"
+              "title": "Outline of Daily"
             }
           },
           {
@@ -196,11 +196,23 @@
   },
   "active": "4306cee8c28bda1b",
   "lastOpenFiles": [
-    "Hotel booking service/Thesis-report/chapters/chuong-4-ket-luan.md",
-    "Hotel booking service/Update plan.md",
-    "Hotel booking service/Thesis-report/chapters/chuong-1-gioi-thieu.md",
-    "Hotel booking service/Thesis-report/chapters/chuong-2-phuong-phap-thuc-hien.md",
+    "Real Time banking/Business Analysis Docs/PRD/02_use_cases.md",
+    "Real Time banking/Business Analysis Docs/PRD/01_nghiep_vu_tong_quan.md",
     "Hotel booking service/Thesis-report/chapters/chuong-3-thiet-ke.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/03_data_model_va_event_design.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/06_load_testing_plan.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/05_ci_cd_pipeline.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/02_data_flow.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/01_sequence_diagrams.md",
+    "Real Time banking/Business Analysis Docs/Tech Spec/04_infrastructure_and_deployment.md",
+    "Daily.md",
+    "Real Time banking/Design system/Real_time_banking_payment_risk_platform_document.md",
+    "Real Time banking/Design system/Pattern.md",
+    "Hotel booking service/Update plan.md",
+    "Hotel booking service/Thesis-report/chapters/README.md",
+    "Hotel booking service/Thesis-report/chapters/chuong-4-ket-luan.md",
+    "Hotel booking service/Thesis-report/chapters/chuong-2-phuong-phap-thuc-hien.md",
+    "Hotel booking service/Thesis-report/chapters/chuong-1-gioi-thieu.md",
     "Hotel booking service/Thesis-report/Backup/v0.1/images/image-125.png",
     "Hotel booking service/Thesis-report/Backup/v0.1/images/image-124.png",
     "Hotel booking service/Thesis-report/Backup/v0.1/images/image-123.png",
@@ -225,22 +237,10 @@
     "Hotel booking service/Thesis-report/Backup/chapters/chuong-4-ket-luan.md",
     "Hotel booking service/Thesis-report/Backup/chapters/chuong-3-thiet-ke.md",
     "Hotel booking service/Thesis-report/Backup/chapters/chuong-2-phuong-phap-thuc-hien.md",
-    "Hotel booking service/Thesis-report/Backup/chapters/chuong-1-gioi-thieu.md",
     "Hotel booking service/Thesis-report/Backup/chapters",
     "Hotel booking service/Thesis-report/images",
-    "Hotel booking service/Thesis-report/chapters/README.md",
     "Hotel booking service/Thesis-report/chapters",
     "Hotel booking service/Thesis-report/Backup",
-    "Hotel booking service/Thesis-report",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/Backup/chapters/README.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/Backup/chapters/chuong-4-ket-luan.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/Backup/chapters/chuong-3-thiet-ke.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/Backup/chapters/chuong-2-phuong-phap-thuc-hien.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/Backup/chapters/chuong-1-gioi-thieu.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/Backup/chaptersf/README.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/Backup/chaptersf/chuong-4-ket-luan.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/Backup/chaptersf/chuong-3-thiet-ke.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/Backup/chaptersf/chuong-2-phuong-phap-thuc-hien.md",
-    "Hotel booking service/ThucTap-566-HuynhNguyenTanPhat-LaiThuanPhat_markdown_v2/Backup/chaptersf/chuong-1-gioi-thieu.md"
+    "Hotel booking service/Thesis-report"
   ]
 }
